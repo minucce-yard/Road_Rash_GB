@@ -1,0 +1,10 @@
+Game relies on strange IRQ behavior with DMG models.
+*  When STAT register is written during VBlank, it always triggers immediate IRQ.
+*  GB Color models do not have this hardware bug and won't load in-game.
+
+
+Simulate this interrupt by manually raising IF (02) LCD flag.
+
+
+
+Thanks to GB Development community for explaining why game crashes on emulators.
