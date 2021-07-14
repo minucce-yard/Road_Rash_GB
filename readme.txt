@@ -8,8 +8,14 @@ gbc_compatible.ips
 *  Playable on Color, Advance handhelds
 
 
+
 hud_sprite_top.ips
 *  Draw world sprites behind dashboard
+
+
+
+menu_border_top.ips
+*  Use correct tilemap at top of menu screen
 
 
 
@@ -18,6 +24,11 @@ _______________________________________________
 
 
 Commits:
+
+3__2021-07-11
+*  menu_border_top released
+
+
 
 2__2021-07-09
 *  hud_sprite_top released
