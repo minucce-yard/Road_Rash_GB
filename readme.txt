@@ -19,11 +19,21 @@ menu_border_top.ips
 
 
 
+stage_loading_delay.ips
+*  Prevent slowdowns that greatly increase loading times
+
+
+
 _______________________________________________
 
 
 
 Commits:
+
+4 - [2021-07-13]
+*  stage_loading_delay released
+
+
 
 3__2021-07-11
 *  menu_border_top released
@@ -46,6 +56,7 @@ _______________________________________________
 
 Visit:
 *  https://github.com/minucce-yard/Road_Rash_GB
+
 
 
 

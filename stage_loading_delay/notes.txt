@@ -1,0 +1,6 @@
+Loading times can be extra long (6-7 seconds).
+-  Normally they take 2-3 seconds.
+
+
+Unnecessary LCD interrupts are turned off during loading as they consume lots of cycles
+drawing nothing on-screen.
