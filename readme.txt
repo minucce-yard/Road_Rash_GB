@@ -24,11 +24,23 @@ stage_loading_delay.ips
 
 
 
+sky_border_top.ips
+*  Show cloud tiles on first lines of screen, instead of black corruption
+
+-  Includes gbc_compatible patch
+
+
+
 _______________________________________________
 
 
 
 Commits:
+
+5 - [2021-07-15]
+*  sky_border_top released
+
+
 
 4 - [2021-07-13]
 *  stage_loading_delay released
