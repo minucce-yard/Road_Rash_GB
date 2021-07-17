@@ -1,0 +1,10 @@
+Cloud tiles often use wrong texture line during rendering.
+-  Lots of data is computed before scanline starts drawing.
+   Often goes past h-blank period and corrupts pixels.
+
+
+
+Reduce amount of math needed to draw each line.
+-  Pre-write static PPU values.
+-  Faster table lookup for scroll values.
+-  Wait h-blank to avoid PPU misfires.  (flashing dots)

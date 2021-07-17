@@ -31,11 +31,21 @@ sky_border_top.ips
 
 
 
+sky_clouds_align.ips
+*  Correctly draw each sky texture line.
+
+
+
 _______________________________________________
 
 
 
 Commits:
+
+6 - [2021-07-17]
+*  sky_clouds_align released
+
+
 
 5 - [2021-07-15]
 *  sky_border_top released
