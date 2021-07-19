@@ -1,0 +1,39 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+.org 0x27fc
+.area 0x280f - 0x27fc
+
+
+/*	Erase vram tiles	*/
+
+	ld a, 0x80					; lcd = blank screen
+	ldh (0x40), a
+
+	ld hl, 0x9800-1				; vram tile end
+
+
+
+@@z_loop:
+	ldh a, (0x41)				; stat ?= active draw
+	and a, 0x02
+	jr nz, @@z_loop
+
+	ldd (hl), a					; wipe tile  (00)
+
+
+	bit 7, h					; 8000-9fff
+	jr nz, @@z_loop
+
+	ret
+
+
+.endarea

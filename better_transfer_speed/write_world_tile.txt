@@ -1,0 +1,103 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+.org 0x12ae
+.area 0x12e5 - 0x12ae
+
+
+/*	Decompress tiles to vram	*/
+
+
+	ldi a, (hl)					; bc = out size
+	ld c, a
+	ldi a, (hl)
+	ld b, a
+
+	ld de, 0x8000				; dst
+
+
+
+@z_decoder_loop:
+	ldi a, (hl)					; control byte
+	bit 7,a						; 8x (raw)
+	jr z, @z_decoder_rle
+
+
+; =======================================
+
+
+@z_decoder_raw:
+	and a, 0x7f					; run length
+	inc a
+
+
+
+@@z_loop:
+	push af
+	call z_wait_blank			; write vram when ready
+
+
+	ldi a, (hl)					; raw byte
+	ld (de), a
+
+	inc de						; next dst
+	dec bc						; total left
+
+
+	pop af						; run left
+	dec a
+	jr nz, @@z_loop
+
+
+	jr @z_exit
+
+
+; =======================================
+
+
+@z_decoder_rle:
+	inc a						; run length
+
+
+@@z_loop:
+	push af
+	call z_wait_blank			; write vram when ready
+
+
+	ld a, (hl)					; rle byte
+	ld (de), a
+
+	inc de						; next dst
+	dec bc						; total left
+
+
+	pop af						; run left
+	dec a
+	jr nz, @@z_loop
+
+
+	inc hl						; next src
+
+
+; =======================================
+
+
+@z_exit:
+	ld a, b						; total out
+	or c
+	jr nz, @z_decoder_loop
+
+
+	pop af
+	ret
+
+
+.endarea

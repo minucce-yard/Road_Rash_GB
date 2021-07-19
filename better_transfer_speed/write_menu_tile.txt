@@ -1,0 +1,46 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+.org 0x3d5b
+.area 0x3d80 - 0x3d5b
+
+
+/*	Write tile to VRAM	*/
+
+
+	ld a, (0xd141)				; dst
+	ld l, a
+	ld h, 0x08
+
+	sla l :: rl h
+	sla l :: rl h
+	sla l :: rl h
+	sla l :: rl h
+
+	ld de, 0xd031				; src  (fixed)
+	ld b, 0x10
+
+
+
+@@z_loop:
+	call z_wait_blank			; wait blank
+
+	ld a, (de)					; src
+	ldi (hl), a					; dst
+
+	inc e
+	dec b
+	jr nz, @@z_loop
+
+	ret
+
+
+.endarea

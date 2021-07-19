@@ -1,0 +1,38 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+.org 0x2962
+.area 0x2973 - 0x2962
+
+
+/*	Wait for next h-blank	*/
+
+
+	push af
+
+
+@z_2963:
+	ldh a, (0x41)				; stat ?= not active draw
+	and a, 0x03
+	jr z, @z_2963
+
+
+@z_296a:
+	ldh a, (0x41)				; stat ?= active draw
+	and a, 0x03
+	jr nz, @z_296a
+
+
+	pop af
+	ret
+
+
+.endarea

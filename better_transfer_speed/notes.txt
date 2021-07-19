@@ -1,0 +1,5 @@
+Some loading screens take extra time due to video timing alignment.
+-  Engine only uploads 1 tile every h-blank.
+
+
+Code is re-wired to use available h.v-blank time, which results in better performance.
