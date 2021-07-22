@@ -42,11 +42,21 @@ stage_loading_delay.ips
 
 
 
+zero_money_printer.ips
+*  Print $0 when broke or free item
+
+
+
 _______________________________________________
 
 
 
 Commits:
+
+
+8 - [2021-07-21]
+*  zero_money_printer released
+
 
 
 7 - [2021-07-19]
@@ -106,8 +116,44 @@ _______________________________________________
 
 Comments:
 
+
 *  PRESS select button
    -  Race course: opens password, name menu
    -  Password: opens credits screen
    -  In-game race: shows bike health
    -  Race results: opens bike shop menu
+
+
+
+*  Shopping cart:
+   -  Add (') marks to in-game police names
+   -  Sometimes sky flickers due to bad mis-timing when creating scroll info.
+   -  Create way to skip logo splash screen
+   -  Races run at 22-25 instead of 30 fps. Improve frame speed?
+   -  Menu loading times can be somewhat improved perhaps
+   -  Re-center dialogue text for less awkward spaces
+   -  Activate double speed mode (GBC emulator only?)
+   -  Remove world object sprite flicker  (GBC emulator with no sprite limit?)
+   -  Look at sound engine for any mistakes, since Code Monkeys engine has lots of minor flaws
+   -  Sergio has 3 unused lines. Find way to add extra text?
+   -  Curly #4 font looks odd
+   -  Inspect portraits for odd pixels that don't fit
+   -  Check hud racer name
+
+
+
+*  RAM cheats:
+
+   d11b = 1-5  [level #]
+
+
+   d11c = 0-5  [sierra nevada]
+   d11d = 0-5  [pacific coast]
+   d11e = 0-5  [redwood forest]
+   d11f = 0-5  [palm forest]
+   d120 = 0-5  [grass valley]
+
+
+   d122 = money  [16-bit]
+   -  0012 = $1200
+   -  1000 = $100000

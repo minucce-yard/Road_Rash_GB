@@ -1,0 +1,6 @@
+When player has no money left, prints $00.
+-  Always prints 2 trailing zeroes.
+
+
+
+Only print 1 trailing zero for special case.
