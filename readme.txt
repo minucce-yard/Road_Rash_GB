@@ -2,11 +2,15 @@ Road Rash (USA, Europe).gb
 
 
 
+______________________________________________________________
+
+
+
 Fixes:
 
 
 better_loading_speed.ips
-*  Manage video timing to avoid longer loading times.
+*  Manage video timing to avoid longer loading times
 
 
 
@@ -38,7 +42,7 @@ sky_border_top.ips
 
 
 sky_clouds_align.ips
-*  Correctly draw each sky texture line.
+*  Correctly draw each sky texture line
 
 
 
@@ -47,8 +51,17 @@ stage_loading_delay.ips
 
 
 
+taller_bold_4.ips
+*  Redrawn bold #4 digit to be more readable
+
+
+
 zero_money_printer.ips
 *  Print $0 when broke or free item
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
 
@@ -57,6 +70,11 @@ _______________________________________________
 
 
 Commits:
+
+
+10 - [2021-07-23]
+*  taller_bold_4 released
+
 
 
 9 - [2021-07-22]
@@ -146,7 +164,6 @@ Comments:
    -  Remove world object sprite flicker  (GBC emulator with no sprite limit?)
    -  Look at sound engine for any mistakes, since Code Monkeys engine has lots of minor flaws
    -  Sergio has 3 unused lines. Find way to add extra text?
-   -  Curly #4 font looks odd
    -  Check hud racer name
 
 

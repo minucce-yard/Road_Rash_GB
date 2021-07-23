@@ -1,0 +1,6 @@
+Old #4 bold tile is very odd looking. Like upper half of an 8x16 tile.
+Strange unknown squiggly line.
+
+
+Redrawn tile taken from thin font design in ROM. Made thicker to approximate old tile.
+And mid-line adjusted to match other bold #s 0-9.
