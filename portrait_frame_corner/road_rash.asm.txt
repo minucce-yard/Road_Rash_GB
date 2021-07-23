@@ -1,0 +1,19 @@
+/*
+Program:
+	Z80 armips assembler by Prof9
+	https://github.com/Prof9/armips/tree/gameboy
+
+
+Indent:
+	Tab space = 4
+*/
+
+
+.gb
+.open "Road Rash (USA, Europe).gb",0
+
+
+	.include "portrait_frame_corner.txt"
+
+
+.close

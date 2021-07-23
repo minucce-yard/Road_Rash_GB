@@ -1,0 +1,4 @@
+Portrait frames have black stray pixels on top-right and bottom-right corner.
+
+
+Course frames do not have bad pixels so likely an error.

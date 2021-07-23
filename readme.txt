@@ -25,6 +25,11 @@ menu_border_top.ips
 
 
 
+portrait_frame_corner.ips
+*  Fill in missing corner pixels on briefing portraits
+
+
+
 sky_border_top.ips
 *  Show cloud tiles on first lines of screen, instead of black corruption
 
@@ -52,6 +57,11 @@ _______________________________________________
 
 
 Commits:
+
+
+9 - [2021-07-22]
+*  portrait_frame_corner released
+
 
 
 8 - [2021-07-21]
@@ -137,7 +147,6 @@ Comments:
    -  Look at sound engine for any mistakes, since Code Monkeys engine has lots of minor flaws
    -  Sergio has 3 unused lines. Find way to add extra text?
    -  Curly #4 font looks odd
-   -  Inspect portraits for odd pixels that don't fit
    -  Check hud racer name
 
 
