@@ -34,6 +34,11 @@ portrait_frame_corner.ips
 
 
 
+sky_animate_last.ips
+*  Move last line of clouds at skyline
+
+
+
 sky_border_top.ips
 *  Show cloud tiles on first lines of screen, instead of black corruption
 
@@ -66,6 +71,11 @@ _______________________________________________
 
 
 Commits:
+
+
+11 - [2021-07-24]
+*  sky_animate_last released
+
 
 
 10a - [2021-07-23]
@@ -166,6 +176,7 @@ Comments:
    -  Look at sound engine for any mistakes, since Code Monkeys engine has lots of minor flaws
    -  Sergio has 3 unused lines. Find way to add extra text?
    -  Check hud racer name
+   -  Inspect unusual car sprites disappearing briefly
 
 
 

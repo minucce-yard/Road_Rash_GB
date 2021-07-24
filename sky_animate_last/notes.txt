@@ -1,0 +1,14 @@
+Last line of cloud tile before the land / mountain skyline does not move.
+
+
+
+Math does not support 16-bit fractions.
+- 1.00
+- 0.d0
+- 0.a0
+- 0.70
+- 0.40
+- 0.10
+- 0.00[e0]
+
+Based on table, it moves very slowly at end. Every 7/8 updates, we move cloud at 0.01 speed (1/256).
