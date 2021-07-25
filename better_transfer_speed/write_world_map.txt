@@ -33,7 +33,8 @@ License:
 	add a, a
 	add a, 0x7c
 	ld l, a
-	xor a
+
+	ld a, 0x00					; carry warning - no xor
 	adc a, 0x1d
 	ld h, a
 

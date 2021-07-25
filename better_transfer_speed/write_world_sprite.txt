@@ -17,7 +17,8 @@ License:
 	add a, a 
 	add a, 0xf9
 	ld l, a
-	xor a
+
+	ld a, 0x00					; keep carry - no xor
 	adc a, 0x1d
 	ld h, a
 
@@ -29,8 +30,7 @@ License:
 	call 0x112a
 
 
-
-	ldi a, (hl)					; road shoulder sprites
+	ldi a, (hl)					; off-road shoulder sprites
 	ld e, a
 	ld d, (hl)
 
@@ -40,7 +40,7 @@ License:
 
 
 
-	ld hl, 0x8df0				; road hazard sprites
+	ld hl, 0x8df0				; on-road hazard sprites
 	ld de, 0x7b0f
 	ld bc, 0x0110
 	call @z_upload

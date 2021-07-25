@@ -7,3 +7,16 @@ VBlank handler must run much better.
 -  Split transfers based on HUD updates of 4 frames.
 -  Run priority PPU data first.
 -  Simulate DMG STAT bug for faster processing.
+
+
+
+__________________________________________________________
+
+
+
+11.2 - [2021-07-25]
+
+
+adc fixes
+-  xor clears carry flag
+-  ld a, $00 is safe

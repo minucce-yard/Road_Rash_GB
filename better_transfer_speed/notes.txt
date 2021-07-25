@@ -3,3 +3,16 @@ Some loading screens take extra time due to video timing alignment.
 
 
 Code is re-wired to use available h.v-blank time, which results in better performance.
+
+
+
+__________________________________________________________
+
+
+
+11.2 - [2021-07-25]
+
+
+adc fixes
+-  xor clears carry flag
+-  ld a, $00 is safe

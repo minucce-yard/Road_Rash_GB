@@ -283,7 +283,8 @@ License:
 	sub a, 0x20					; src tile
 	add a, 0x31
 	ld l, a
-	xor a
+
+	ld a, 0x00					; keep carry - no xor
 	adc a, 0xd0
 	ld h, a
 
