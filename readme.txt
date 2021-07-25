@@ -34,6 +34,11 @@ portrait_frame_corner.ips
 
 
 
+skip_splash_screen.ips
+*  Press joypad button to skip logo screen
+
+
+
 sky_animate_last.ips
 *  Move last line of clouds at skyline
 
@@ -71,6 +76,11 @@ _______________________________________________
 
 
 Commits:
+
+
+12 - [2021-07-25]
+*  skip_splash_screen released
+
 
 
 11.2 - [2021-07-25]
@@ -177,19 +187,25 @@ Comments:
 
 
 
+*  In-game soft reset: press A + B + Select + Start
+
+
+
 *  Shopping cart:
    -  Add (') marks to in-game police names
    -  Sometimes sky flickers due to bad mis-timing when creating scroll info.
-   -  Create way to skip logo splash screen
-   -  Races run at 22-25 instead of 30 fps. Improve frame speed?
+   -  Races run at 12-24 instead of 30 fps. Improve frame speed?
    -  Menu loading times can be somewhat improved perhaps
    -  Re-center dialogue text for less awkward spaces
-   -  Activate double speed mode (GBC emulator only?)
-   -  Remove world object sprite flicker  (GBC emulator with no sprite limit?)
+   -  Remove world object sprite flicker  (emulator with no sprite limit)
    -  Look at sound engine for any mistakes, since Code Monkeys engine has lots of minor flaws
    -  Sergio has 3 unused lines. Find way to add extra text?
    -  Check hud racer name
    -  Inspect unusual car sprites disappearing briefly
+
+
+
+*  For best performance, use an emulator that supports double-speed DMG mode.
 
 
 

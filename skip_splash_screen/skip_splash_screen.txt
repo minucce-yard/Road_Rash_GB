@@ -1,0 +1,187 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+/*	Palette fade-out	*/
+
+
+.org 0x3f0f
+.area 0x3f51 - 0x3f0f
+
+
+	ld de, 0x3f93
+
+
+@z_fade:
+	ld a, 0x10						; total frames
+	ld (0xd0d1), a
+
+
+
+@@z_wait1:
+	ldh a, (0x44)					; stat = wait line
+	cp a, 0x8c
+	jr z, @@z_wait1
+
+
+@@z_wait2:
+	ldh a, (0x44)					; stat = wait not line
+	cp a, 0x8c
+	jr nz, @@z_wait2
+
+
+	ld a, (0xd0d1)					; done cycling
+	dec a
+	ret z
+	ld (0xd0d1), a
+
+
+; ==============================================
+
+
+	and a, 0x0c						; palette index
+	srl a
+	srl a
+
+	ld h, 0x00						; palette data
+	ld l, a
+	add hl, de
+
+
+	ldi a, (hl)						; bgp
+	ldh (0x47), a
+
+	ld (0xd155), a
+	ld (0xd158), a
+	inc hl
+	inc hl
+	inc hl
+
+
+	ldi a, (hl)						; obp0
+	ld (0xd156), a
+	inc hl
+	inc hl
+	inc hl
+
+
+	ld a, (hl)						; obp1
+	ld (0xd157), a
+
+	jr @@z_wait1
+
+
+.endarea
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+/*	Palette fade-in		*/
+
+
+.org 0x3f51
+.area 0x3f93 - 0x3f51
+
+
+	ld de, 0x3f9f
+	jp @z_fade
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+/*	Splash joypad skip		*/
+
+
+@z_splash_skip:
+	ld a, ~0x20 & 0xff				; select joypad buttons
+	ldh (0x00), a
+
+
+; ===================================================
+
+
+@@z_wait1:
+	push bc							; wait 1 frame
+	call 0x297d
+	pop bc
+
+
+	dec b							; waiting done
+	ret z
+
+
+	ldh a, (0x00)					; joypad ready
+	and a, 0x0f
+	xor a, 0x0f
+	jr nz, @@z_wait1
+
+
+; ===================================================
+
+
+@@z_wait2:
+	push bc							; wait 1 frame
+	call 0x297d
+	pop bc
+
+
+	dec b							; waiting done
+	ret z
+
+
+	ldh a, (0x00)					; button pushed
+	and a, 0x0f
+	xor a, 0x0f
+	ret nz
+
+
+	jr @@z_wait2
+
+
+.endarea
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x3a67
+.area 0x3a6c - 0x3a67
+
+
+	ld b, 0xc8						; legal logo
+	call @z_splash_skip
+
+
+.endarea
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x2a3c
+.area 0x2a41 - 0x2a3c
+
+
+	ld b, 0x82						; title logo
+	call @z_splash_skip
+
+
+.endarea

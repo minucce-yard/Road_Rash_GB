@@ -1,0 +1,4 @@
+Legal logo screen has some wait time to bypass.
+
+
+Insert code to check for joypad button and remove wait counter.
