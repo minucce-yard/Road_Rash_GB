@@ -1,0 +1,47 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+	.include "@__free_space/palette_fade.txt"
+	.relativeinclude on
+
+
+.org 0x3f7c
+.area 0x3f93 - 0x3f7c
+
+
+	.include "inline.txt"
+	; .notice tohex(orga())
+
+
+.endarea
+
+
+	.relativeinclude off
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+/*	Double speed hack	*/
+
+
+.org 0x0156
+.area 0x015a - 0x0156
+
+
+	call g_double_speed
+	nop
+
+
+.endarea

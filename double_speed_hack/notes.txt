@@ -1,0 +1,6 @@
+Game runs modestly slow, 12-20 fps.
+
+
+
+Using a clock hack that runs at 2x speed, gameplay feels nice.
+-  If emulator supports it, turns on double speed flag outside of CGB mode.

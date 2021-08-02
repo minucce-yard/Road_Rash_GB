@@ -1,0 +1,37 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+/*	Double speed hack	*/
+
+
+g_double_speed:
+	ld a, 0x80						; detour code
+	ldh (0x40), a
+
+
+; =============================================
+
+
+	ldh a, (0x4d)					; double speed bit
+	sla a
+	ret c
+
+
+	ld a, 0x30						; joypad bits
+	ldh (0x00), a
+
+	ld a, 0x01						; switch speed
+	ldh (0x4d), a
+
+
+	stop
+	ret

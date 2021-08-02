@@ -13,51 +13,51 @@ Indent:
 .open "Road Rash (USA, Europe).gb",0
 
 
-.if 0
 
-/*	Basic fixes	*/
+.if 1
+
+/*	Basic	*/
 
 
-	;	.include "gbc_compatible.txt"
+	;	.include "gbc_compatible/main.txt"
 
-	.include "stage_loading_delay.txt"
+	.include "stage_loading_delay/main.txt"
 
-	.include "hud_sprite_top.txt"
-	.include "menu_border_top.txt"
+	.include "hud_sprite_top/main.txt"
+	.include "menu_border_top/main.txt"
 
-	.include "sky_clouds_align.txt"
-	.include "sky_border_top.txt"
+	.include "sky_clouds_align/main.txt"
+	.include "sky_border_top/main.txt"
 
-	.include "zero_money_printer.txt"
-	.include "portrait_frame_corner.txt"
+	.include "zero_money_printer/main.txt"
+	.include "portrait_frame_corner/main.txt"
 
 .endif
 
 
 
-.if 0
 
-/*	Upgrade fixes	*/
+.if 1
+
+/*	Plus	*/
 
 
-	.include "better_transfer_speed.txt"
+	.include "better_transfer_speed/main.txt"
 
-	.include "sky_animate_last.txt"
+	.include "sky_animate_last/main.txt"
 
 	.include "skip_splash_screen/main.txt"
 
-	.include "dialogue_text_format.txt"
-	.include "taller_bold_4.txt"
-
-	.include "racer_name_build.txt"
+	.include "taller_bold_4/main.txt"
 
 .endif
 
 
 
-.if 0
 
-/*	Emulator hacks	*/
+.if 1
+
+/*	Special	*/
 
 
 	.include "double_speed_hack/main.txt"

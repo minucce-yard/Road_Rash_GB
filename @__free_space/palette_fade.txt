@@ -101,10 +101,36 @@ License:
 .endarea
 
 
+; .area 0x3f93 - 0x3f51
+
+
 
 ; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
 
-; .area 0x3f93 - 0x3f57
-; .include "skip_splash_screen/inline.txt"
+.org 0x3f57
+.area 0x3f93 - 0x3f57
+
+
+	; .include "skip_splash_screen/inline.txt"
+	; .notice tohex(orga())
+
+
+.endarea
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x3f7c
+.area 0x3f93 - 0x3f7c
+
+
+	; .include "double_speed_hack/inline.txt"
+	; .notice tohex(orga())
+
+
+.endarea

@@ -6,12 +6,7 @@ ______________________________________________________________
 
 
 
-Fixes:
-
-
-better_loading_speed.ips
-*  Manage video timing to avoid longer loading times
-
+Basic:
 
 
 gbc_compatible.ips
@@ -34,19 +29,8 @@ portrait_frame_corner.ips
 
 
 
-skip_splash_screen.ips
-*  Press joypad button to skip logo screen
-
-
-
-sky_animate_last.ips
-*  Move last line of clouds at skyline
-
-
-
 sky_border_top.ips
 *  Show cloud tiles on first lines of screen, instead of black corruption
-
 -  Includes gbc_compatible patch
 
 
@@ -61,13 +45,48 @@ stage_loading_delay.ips
 
 
 
+zero_money_printer.ips
+*  Print $0 when broke or free item
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+Plus:
+
+
+better_loading_speed.ips
+*  Manage video timing to avoid longer loading times
+
+
+
+skip_splash_screen.ips
+*  Press joypad button to skip logo screen
+
+
+
+sky_animate_last.ips
+*  Move last line of clouds at skyline
+
+
+
 taller_bold_4.ips
 *  Redrawn bold #4 digit to be more readable
 
 
 
-zero_money_printer.ips
-*  Print $0 when broke or free item
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+Special:
+
+
+double_speed_hack.ips
+*  Turn on double speed DMG mode
+-  Emulator hack required
 
 
 
@@ -76,6 +95,10 @@ _______________________________________________
 
 
 Commits:
+
+13 - [2021-07-28]
+*  double_speed_hack.ips
+
 
 
 12.1 - [2021-07-26]
@@ -240,3 +263,10 @@ Compile:
 
 *  Z80 armips assembler by Prof9
    https://github.com/Prof9/armips/tree/gameboy
+
+
+
+*  Copy @__build files to root folder  (one up)
+
+   armips "road_rash.asm.txt"
+   rgbfix -fgh "Road Rash (USA, Europe).gb"
