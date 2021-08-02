@@ -1,0 +1,60 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+	.include "@__free_space/palette_fade.txt"
+	.relativeinclude on
+
+
+.org 0x3f57
+.area 0x3f93 - 0x3f57
+
+
+	.include "inline.txt"
+	; .notice tohex(orga())
+
+
+.endarea
+
+
+	.relativeinclude off
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x3a67
+.area 0x3a6c - 0x3a67
+
+
+	ld b, 0xc8						; legal logo
+	call g_splash_skip
+
+
+.endarea
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x2a3c
+.area 0x2a41 - 0x2a3c
+
+
+	ld b, 0x82						; title logo
+	call g_splash_skip
+
+
+.endarea

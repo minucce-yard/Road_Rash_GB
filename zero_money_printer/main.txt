@@ -1,0 +1,127 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+.org 0x35ec
+.area 0x3613 - 0x35ec
+
+
+/*	Number printer	*/
+
+
+	ld c, 0x00					; no leading zeroes
+
+
+	ld a, (0xd129)				; x---
+	call @z_print_digit
+
+	swap a						; -x--
+	call @z_print_digit
+
+
+	ld a, (0xd128)				; --x-
+	call @z_print_digit
+
+	swap a						; ---x
+	call @z_print_digit
+
+
+; =========================================
+
+
+	ld a, 0x30					; first trailing zero
+	ldi (hl), a
+
+
+	dec c						; non-zero amount
+	ret nz
+
+
+	ldi (hl), a					; second trailing zero
+	ret
+
+
+.endarea
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x3613
+.area 0x3649 - 0x3613
+
+
+/*	Number printer	*/
+
+
+	ld c, 0x00					; no leading zeroes
+
+
+	ld a, (0xd123)				; x---
+	call @z_print_digit
+
+	swap a						; -x--
+	call @z_print_digit
+
+
+	ld a, (0xd122)				; --x-
+	call @z_print_digit
+
+	swap a						; ---x
+	call @z_print_digit
+
+
+; =========================================
+
+
+	ld a, 0x30					; first trailing zero
+	ldi (hl), a
+
+
+	dec c						; non-zero amount
+	ret nz
+
+
+	ldi (hl), a					; second trailing zero
+	ret
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+@z_print_digit:
+	push af
+
+	and a, 0xf0					; leading zero check
+	jr nz, @@z_print_tile
+
+	bit 0, c					; zero in front
+	jr z, @@z_exit
+
+
+
+@@z_print_tile:
+	ld c, 0x01					; print trailing zeroes
+
+	swap a						; digit tile
+	add a, 0x30
+	ldi (hl), a
+
+
+
+@@z_exit:
+	pop af
+	ret
+
+
+.endarea

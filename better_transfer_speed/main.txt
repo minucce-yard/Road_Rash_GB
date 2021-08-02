@@ -1,0 +1,24 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+	.include "wait_hblank.txt"
+
+
+	.include "erase_vram_tile.txt"
+
+
+	.include "cache_menu_tile.txt"
+	.include "write_menu_tile.txt"
+
+
+	.include "write_world_tile.txt"
+	.include "write_world_map.txt"
+	.include "write_world_sprite.txt"

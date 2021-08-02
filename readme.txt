@@ -78,6 +78,11 @@ _______________________________________________
 Commits:
 
 
+12.1 - [2021-07-26]
+*  re-organize
+
+
+
 12 - [2021-07-25]
 *  skip_splash_screen released
 
@@ -193,7 +198,7 @@ Comments:
 
 *  Shopping cart:
    -  Add (') marks to in-game police names
-   -  Sometimes sky flickers due to bad mis-timing when creating scroll info.
+   -  Sometimes sky flickers due to bad mis-timing when creating scroll info
    -  Races run at 12-24 instead of 30 fps. Improve frame speed?
    -  Menu loading times can be somewhat improved perhaps
    -  Re-center dialogue text for less awkward spaces
@@ -205,7 +210,7 @@ Comments:
 
 
 
-*  For best performance, use an emulator that supports double-speed DMG mode.
+*  For best performance, use an emulator that supports double-speed DMG mode  (hack)
 
 
 
@@ -224,3 +229,14 @@ Comments:
    d122 = money  [16-bit]
    -  0012 = $1200
    -  1000 = $100000
+
+
+
+_________________________________________________________
+
+
+
+Compile:
+
+*  Z80 armips assembler by Prof9
+   https://github.com/Prof9/armips/tree/gameboy

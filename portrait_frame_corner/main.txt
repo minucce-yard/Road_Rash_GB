@@ -1,0 +1,45 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+/*
+Top-Right Corner Tile
+	--------
+	--------
+	--------
+	--------
+	--------
+	--------
+	--------
+	x-------
+*/
+
+.org 0x17d27 + 0x30 + 0x0f
+	.byte 0x7e
+
+
+
+
+/*
+Bottom-Right Corner Tile
+	x-------
+	--------
+	--------
+	--------
+	--------
+	--------
+	--------
+	--------
+*/
+
+
+.org 0x17d27 + 0x50 + 0x01
+	.byte 0x7e

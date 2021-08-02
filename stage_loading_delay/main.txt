@@ -1,0 +1,25 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+.org 0x01ae
+.area 0x01b8 - 0x01ae
+
+
+/*	Disable interrupts that block transfers		*/
+
+
+	di
+	call 0x27f4				; reset ppu
+	call 0x090e				; reset apu
+	call 0x27fc				; erase vram
+
+
+.endarea

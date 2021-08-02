@@ -1,0 +1,59 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+/*	Splash joypad skip		*/
+
+
+g_splash_skip:
+	ld a, ~0x20 & 0xff				; select joypad buttons
+	ldh (0x00), a
+
+
+; ===================================================
+
+
+@@z_wait1:
+	push bc							; wait 1 frame
+	call 0x297d
+	pop bc
+
+
+	dec b							; waiting done
+	ret z
+
+
+	ldh a, (0x00)					; joypad ready
+	and a, 0x0f
+	xor a, 0x0f
+	jr nz, @@z_wait1
+
+
+; ===================================================
+
+
+@@z_wait2:
+	push bc							; wait 1 frame
+	call 0x297d
+	pop bc
+
+
+	dec b							; waiting done
+	ret z
+
+
+	ldh a, (0x00)					; button pushed
+	and a, 0x0f
+	xor a, 0x0f
+	ret nz
+
+
+	jr @@z_wait2
