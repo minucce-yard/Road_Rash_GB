@@ -1,0 +1,361 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+.org 0x117d
+.area 0x1186 - 0x117d
+
+
+
+/*	Build enemy name tiles	*/
+
+
+	ld de, 0xd031				; work buffer  [d031 - d071]
+	jr @z_build_start
+
+
+/*
+Note:
+	Game already transferred tiles to VRAM long ago.
+
+	No need to wait for anything.
+*/
+
+
+.endarea
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x1186
+.area 0x11e4 - 0x1186
+
+
+/*
+	Build enemy name tiles using 4-bit font letters
+
+
+	Shared entry point:
+	- Player name  [d071]
+	- Bike name    [d071]
+	- Enemy name   [d031]
+*/
+
+
+
+@z_build_start:
+	ld bc, 0x0800				; b = 8-letter names; c = left / right table
+
+
+
+@@z_name:
+	ldi a, (hl)					; next letter
+
+
+	cp a, 0x20					; space
+	jr nz, @@z_quote
+
+	ld a, 0x1a
+	jr @@z_index
+
+
+
+@@z_quote:
+	cp a, 0x27					; ' letter
+	jr nz, @@z_letter
+
+	ld a, 0x1b
+	jr @@z_index
+
+
+
+@@z_letter:
+	sub a, 0x41					; uppercase
+
+
+; ==================================================
+
+
+@@z_index:
+	push bc
+	push hl
+
+
+	ld b, 0x00					; index into 1-bpp table
+	add a, c
+	sla a :: rl b
+	sla a :: rl b
+	sla a :: rl b
+	ld c, a
+
+	ld hl, 0x64bd				; font table  (64bd, 666d)
+	add hl, bc
+
+
+	ld a, 0x02					; rom bank 02  (font)
+	call 0x112a
+
+
+	ld b, 0x08					; 8 rows
+
+
+
+@@z_print:
+	ld a, (de)					; tile buffer
+	or (hl)						; add left / right font letter
+
+	inc hl						; 1-bpp
+
+	ld (de), a
+	inc e
+	ld (de), a
+	inc e
+
+	dec b
+	jr nz, @@z_print
+
+
+
+	pop hl
+	pop bc
+
+
+; ==================================================
+
+
+@@z_flip_table:
+	ld a, 27 * 2				; flip font table  (alphabet size)
+	xor a, c
+	ld c, a
+	jr z, @@z_next
+
+
+	ld a, 0xf0					; rewind work buffer tile
+	add a, e
+	ld e, a
+
+
+
+@@z_next:
+	ld a, 0x01					; rom bank 01  (name)
+	call 0x112a
+
+
+	dec b						; next letter
+	jr nz, @@z_name
+
+	ret
+
+
+.endarea
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0xa4bd
+.area 0xa81d - 0xa4bd
+
+
+/*	1-bpp 4x8 font	*/
+
+
+	.incbin "racer_name_symbols\font_left.bin"
+	.incbin "racer_name_symbols\font_right.bin"
+
+
+	; --- note: relative include bug, use working path
+
+
+.endarea
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.relativeinclude on
+.loadtable "TextTable.txt"
+
+
+
+.org 0x6e14
+.area 0x6e9b - 0x6e14
+
+
+	.stringn "RUDE BOY", 0x00
+	.stringn "GRUBB   ", 0x01
+	.stringn "GUNTHER ", 0x01
+	.stringn "SID     ", 0x00
+	.stringn "AXLE    ", 0x01
+	.stringn "HAMMER  ", 0x03
+	.stringn "DREAD   ", 0x03
+	.stringn "LESTER  ", 0x00
+	.stringn "REX     ", 0x02
+	.stringn "SLATER  ", 0x00
+	.stringn "NATASHA ", 0x00
+	.stringn "BIFF    ", 0x02
+	.stringn "SHIVA   ", 0x00
+	.stringn "VIPER   ", 0x03
+	.stringn "O'LEARY ", 0x00
+
+
+.endarea
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x6e9c
+.area 0x6f23 - 0x6e9c
+
+
+	.stringn "DREAD   ", 0x03
+	.stringn "SLATER  ", 0x00
+	.stringn "SHIVA   ", 0x01
+	.stringn "LESTER  ", 0x02
+	.stringn "REX     ", 0x03
+	.stringn "AXLE    ", 0x02
+	.stringn "HELGA   ", 0x00
+	.stringn "VIPER   ", 0x03
+	.stringn "BIFF    ", 0x02
+	.stringn "ANGEL   ", 0x03
+	.stringn "BUTCH   ", 0x03
+	.stringn "NATASHA ", 0x00
+	.stringn "IKIRA   ", 0x00
+	.stringn "HOGHIDE ", 0x03
+	.stringn "O'ROURKE", 0x00
+
+
+.endarea
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x6f24
+.area 0x6fab - 0x6f24
+
+
+	.stringn "VIPER   ", 0x03
+	.stringn "BIFF    ", 0x03
+	.stringn "OTIS    ", 0x01
+	.stringn "ANGEL   ", 0x03
+	.stringn "HOGHIDE ", 0x03
+	.stringn "SLATER  ", 0x00
+	.stringn "DREAD   ", 0x03
+	.stringn "BUTCH   ", 0x03
+	.stringn "ZIPPY   ", 0x03
+	.stringn "SPIKE   ", 0x03
+	.stringn "IKIRA   ", 0x00
+	.stringn "SERGIO  ", 0x03
+	.stringn "NATASHA ", 0x00
+	.stringn "CHIP    ", 0x03
+	.stringn "FLYNN   ", 0x00
+
+
+.endarea
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x6fac
+.area 0x7033 - 0x6fac
+
+
+	.stringn "SPIKE   ", 0x03
+	.stringn "LUNA    ", 0x00
+	.stringn "HOGHIDE ", 0x03
+	.stringn "ZIPPY   ", 0x00
+	.stringn "VIPER   ", 0x03
+	.stringn "BIFF    ", 0x03
+	.stringn "OTIS    ", 0x02
+	.stringn "BOB     ", 0x01
+	.stringn "IKIRA   ", 0x00
+	.stringn "BUTCH   ", 0x03
+	.stringn "NATASHA ", 0x00
+	.stringn "CHIP    ", 0x03
+	.stringn "SERGIO  ", 0x03
+	.stringn "MADDOG  ", 0x03
+	.stringn "O'SHEA  ", 0x00
+
+.endarea
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x7034
+.area 0x70bb - 0x7034
+
+
+	.stringn "BUTCH   ", 0x03
+	.stringn "SPIKE   ", 0x03
+	.stringn "HOGHIDE ", 0x03
+	.stringn "LUNA    ", 0x00
+	.stringn "OLLIE   ", 0x00
+	.stringn "ZIPPY   ", 0x03
+	.stringn "VIPER   ", 0x03
+	.stringn "BOB     ", 0x03
+	.stringn "IKIRA   ", 0x00
+	.stringn "KILLJOY ", 0x03
+	.stringn "SERGIO  ", 0x03
+	.stringn "NATASHA ", 0x00
+	.stringn "MADDOG  ", 0x03
+	.stringn "CHIP    ", 0x03
+	.stringn "O'CONNOR", 0x00
+
+
+.endarea
+
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x6b76
+.area 0x6bd9 - 0x6b76
+
+
+	.stringn "O'Leary ", 0xFC
+	.stringn "O'Rourke", 0x00
+	.stringn " Flynn  ", 0xFC
+	.stringn " O'Shea ", 0x00
+	.stringn "O'Connor", 0x00
+	.stringn "Natasha ", 0xFC
+	.stringn "  Biff  ", 0x00
+	.stringn " Slater ", 0x00
+	.stringn " Ikira  ", 0x00
+	.stringn " Sergio ", 0x00
+	.stringn " Maddog ", 0xFC
+
+
+.endarea
+
+
+.relativeinclude off

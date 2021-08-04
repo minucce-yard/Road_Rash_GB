@@ -1,0 +1,6 @@
+Old 2-bpp 4x8 font was restricted to 26 letters + whitespace.
+-  Police names like O'Leary were drawn as O Leary.
+
+
+
+Converted to 1-bpp and doubled alphabet size, although most new tiles left unused.

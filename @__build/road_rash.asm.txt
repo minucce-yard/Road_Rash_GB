@@ -9,6 +9,7 @@ Indent:
 */
 
 
+
 .gb
 .open "Road Rash (USA, Europe).gb",0
 
@@ -49,6 +50,8 @@ Indent:
 	.include "skip_splash_screen/main.txt"
 
 	.include "taller_bold_4/main.txt"
+
+	.include "racer_name_symbols/main.txt"
 
 .endif
 
