@@ -62,8 +62,13 @@ better_loading_speed.ips
 
 
 
-racer_name_letters.ip
+racer_name_letters.ips
 *  Add ' symbol to police names
+
+
+
+racer_sort_priority.ips
+*  Print closest rivals who have higher veteran status
 
 
 
@@ -101,13 +106,19 @@ _______________________________________________
 
 Commits:
 
+
+15 - [2021-08-01]
+*  racer_sort_priority released
+
+
+
 14 - [2021-07-30]
-*  racer_name_letters.ips released
+*  racer_name_letters released
 
 
 
 13 - [2021-07-28]
-*  double_speed_hack.ips released
+*  double_speed_hack released
 
 
 
@@ -234,6 +245,9 @@ Comments:
 
    -  Some rashers have different bikes, with major (de-)acceleration bonuses.
       If you're fast, you can see them zip up the ranks in the distance.
+
+   -  During player crashes, veterans who are far ahead will actually take a break.
+      When the player resumes driving, they will re-start their bikes.
 
 
 

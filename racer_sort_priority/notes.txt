@@ -1,0 +1,4 @@
+Algorithm searches from worst to best drivers, which often prints behind people during ties.
+
+
+New version starts at higher-ranked end first, the veterans.

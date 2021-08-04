@@ -1,0 +1,64 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+.org 0x639d
+.area 0x63c3 - 0x639d
+
+
+
+/*	Select closest racer based on distance	*/
+
+
+	ld hl, 0xcde7				; highest ranked racer
+	ld bc, 0x0e7f				; racer 15 -- max distance
+	ld e, b						; closest racer
+
+
+
+@@z_loop:
+	ld a, (hl)					; read distance
+	bit 7, a					; check negative value
+	jr z, @@z_compare
+
+	xor a, 0xff					; absolute value
+	inc a
+
+
+
+@@z_compare:
+	cp c						; closer than last record?
+	jr nc, @@z_next
+
+	ld b, e						; record racer data
+	ld c, a
+
+
+
+@@z_next:
+	ld a, l						; next table entry
+	sub a, 0x10
+	ld l, a
+
+	dec e
+	ld a, e
+	cp a, 0xff
+	jr nz, @@z_loop
+
+
+
+	ld a, b						; store closest racer
+	ld (0xce52), a
+
+	ret
+
+
+.endarea

@@ -52,6 +52,7 @@ Indent:
 	.include "taller_bold_4/main.txt"
 
 	.include "racer_name_symbols/main.txt"
+	.include "racer_sort_priority/main.txt"
 
 .endif
 
