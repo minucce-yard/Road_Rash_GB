@@ -1,0 +1,5 @@
+Speed meter oddly goes up in multiples of 3.
+-  Coders dropped digits 1-3 when doing math  [x * 3 / 4]
+
+
+Math is done using all digits now.

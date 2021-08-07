@@ -49,6 +49,8 @@ Indent:
 
 	.include "skip_splash_screen/main.txt"
 
+	.include "speed_meter_precision/main.txt"
+	
 	.include "taller_bold_4/main.txt"
 
 	.include "racer_name_symbols/main.txt"

@@ -1,0 +1,88 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+.org 0x1593
+.area 0x15d3 - 0x1593
+
+
+
+/*	Print speedometer digits	*/
+
+
+	ld a, (0xcfe5)				; speed
+
+	ld e, a						; * 3
+	ld d, 0x00
+	ld l, e
+	ld h, d
+	add hl, de
+	add hl, de
+
+	srl h						; / 4
+	rr l
+	srl h
+	rr l
+
+
+; ====================================================
+
+
+	ld a, l						; x00
+	ld b, 0xff					; default '0' digit
+
+
+@@z_loop100:
+	inc b
+	sub a, 0x64
+	jr nc, @@z_loop100
+
+	add a, 0x64
+	ld l, a
+
+
+	ld a, b						; tilemap
+	add a, 0x66
+	ld (0xd0fd), a
+
+
+; ====================================================
+
+
+	ld a, l
+	ld b, 0xff
+
+
+@@z_loop10:
+	inc b
+	sub a, 0x0a
+	jr nc, @@z_loop10
+
+	add a, 0x0a
+	ld l, a
+
+
+	ld a, b						; tilemap
+	add a, 0x66
+	ld (0xd0fe), a
+
+
+; ====================================================
+
+
+	ld a, l
+	add a, 0x66
+	ld (0xd0ff), a
+
+	ret
+
+
+.endarea

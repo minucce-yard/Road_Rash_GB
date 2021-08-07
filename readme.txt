@@ -82,6 +82,11 @@ sky_animate_last.ips
 
 
 
+speed_meter_precision.ips
+*  Use more digits in printing speedometer
+
+
+
 taller_bold_4.ips
 *  Redrawn bold #4 digit to be more readable
 
@@ -105,6 +110,11 @@ _______________________________________________
 
 
 Commits:
+
+
+16 - [2021-08-03]
+*  speed_meter_precision released
+
 
 
 15 - [2021-08-01]
@@ -290,6 +300,9 @@ Comments:
    d01e-d020 = distance driven  [24-bit lsb]
    -  07dfe3 ~ 5.6 miles
 
+
+   cfe5 = speed  [16-bit lsb]
+   -  $94 * (3/4) ==> $6f  [111 mph]
 
 
 _________________________________________________________
