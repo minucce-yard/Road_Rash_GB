@@ -33,6 +33,8 @@ Indent:
 	.include "zero_money_printer/main.txt"
 	.include "portrait_frame_corner/main.txt"
 
+	.include "player_rival_distance/main.txt"
+
 .endif
 
 

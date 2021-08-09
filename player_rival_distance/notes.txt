@@ -1,0 +1,7 @@
+Game is not correctly computing distance from rival racers.
+-  At race start, #14 and player should be equal but math computed disagrees.
+   When passing rivals, it becomes somewhat more apparent.
+
+
+
+Use correct position values, not physical distance driven.

@@ -24,6 +24,11 @@ menu_border_top.ips
 
 
 
+player_rival_distance.ips
+*  Compute correct values 
+
+
+
 portrait_frame_corner.ips
 *  Fill in missing corner pixels on briefing portraits
 
@@ -110,6 +115,11 @@ _______________________________________________
 
 
 Commits:
+
+
+17 - [2021-08-05]
+*  player_rival_distance released
+
 
 
 16 - [2021-08-03]
@@ -303,6 +313,11 @@ Comments:
 
    cfe5 = speed  [16-bit lsb]
    -  $94 * (3/4) ==> $6f  [111 mph]
+
+
+   ce63 = race flag
+   -  $00 = racing
+   -  $01 = end race
 
 
 _________________________________________________________
