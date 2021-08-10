@@ -1,0 +1,5 @@
+Engine uses 8-bit precision to determine player rank
+-  This allows player to gain position earlier than normal
+
+
+Modification checks full 24-bit distance values for true position

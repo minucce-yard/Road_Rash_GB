@@ -1,0 +1,58 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+.org 0x63c3
+.area 0x63e4 - 0x63c3
+
+
+
+/*	Player rank		*/
+
+	ld a, (0xce63)			; race started
+	or a
+	ret nz
+
+
+; ================================================
+
+
+	ld a, 0x01				; rank 1
+	ld hl, 0xcd07			; distance table
+	ld b, 0x0e				; 14 racers
+	ld de, 0x0010			; data size
+
+
+
+@@z_loop:
+	bit 7, (hl)				; check behind player
+	jr nz, @@z_next
+
+
+	inc a					; enemy in front
+	daa
+
+
+
+@@z_next:
+	add hl, de				; next racer
+	dec b
+	jr nz, @@z_loop
+
+
+
+	ld (0xd0f4), a			; player rank
+	ret
+
+
+
+.endarea
+; .notice int(0x63e4 - orga())

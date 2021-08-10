@@ -1,6 +1,10 @@
 Road Rash (USA, Europe).gb
 
 
+MD-5:  71AF355CBF7B8C7FE30F509803BBCED6
+SHA-1: 488E699490598234E762ECF864C75EDCB1BC6066
+
+
 
 ______________________________________________________________
 
@@ -25,7 +29,7 @@ menu_border_top.ips
 
 
 player_rival_distance.ips
-*  Compute correct values 
+*  Compute correct distance values from other drivers
 
 
 
@@ -67,6 +71,11 @@ better_loading_speed.ips
 
 
 
+player_rank_precision.ips
+*  Use more digits to determine accurate driver ranking
+
+
+
 racer_name_letters.ips
 *  Add ' symbol to police names
 
@@ -83,7 +92,7 @@ skip_splash_screen.ips
 
 
 sky_animate_last.ips
-*  Move last line of clouds at skyline
+*  Move last line of clouds at skyline  (very very slow)
 
 
 
@@ -115,6 +124,11 @@ _______________________________________________
 
 
 Commits:
+
+
+18 - [2021-08-07]
+*  player_rank_precision released
+
 
 
 17 - [2021-08-05]
@@ -260,7 +274,7 @@ Comments:
 
 
 
-*  Sometimes you'll see the same racer names repeatedly.
+*  Sometimes you'll see the same racer names repeatedly
    -  When some rivals fall behind, they can aggressively cling to your tail.
 
    -  Some rashers have different bikes, with major (de-)acceleration bonuses.
@@ -268,6 +282,10 @@ Comments:
 
    -  During player crashes, veterans who are far ahead will actually take a break.
       When the player resumes driving, they will re-start their bikes.
+
+
+
+*  Stage clear: place 4th or higher in each course
 
 
 
@@ -290,6 +308,40 @@ Comments:
 
 
 
+*  Scrapbook of unbuilt expansion modules
+
+
+   30 fps
+   -  Seems unrealistic on DMG. Sprite engine could run better.
+      Probably some waste of cycles scattered everywhere. Lots of work.
+
+
+   Colorizer
+   -  There's not much color to add: menus, portraits, sprites, title, clouds, mountains, road.
+      Still feels like enough work.
+
+
+   Final rival rankings  (bug)
+   -  Computer drivers keep racing after crossing the line. Often they keep switching places until
+      results screen is shown. Ideally their rank should be locked in once they touch the marker.
+
+   -  A fix would require initializing CE55 table at race start.
+      Checking each driver as their position is updated.
+      And rewriting some fixed routines to handle this situation.
+
+
+   SRAM saving
+   -  Method to resume progress without entering password
+
+
+
+*  Alternate version: beta or early release
+   -  Camera angle is at ground level, making far objects hard to spot
+   -  Runs faster with few graphical glitches, due to more rendering time
+   -  Rivals seem to fight less
+
+
+
 *  RAM cheats:
 
    d11b = 1-5  [level #]
@@ -307,6 +359,9 @@ Comments:
    -  1000 = $100000
 
 
+   d125 = 0-5  [bike]
+
+
    d01e-d020 = distance driven  [24-bit lsb]
    -  07dfe3 ~ 5.6 miles
 
@@ -318,6 +373,18 @@ Comments:
    ce63 = race flag
    -  $00 = racing
    -  $01 = end race
+
+
+   ce65 = race ending
+   -  $00 = normal
+   -  $01 = busted
+   -  $02 = wrecked
+
+
+   ce0a = police flag
+   -  $00 = on-duty
+   -  $01 = off-duty
+
 
 
 _________________________________________________________

@@ -1,0 +1,85 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+/*	0x0d02 - 0x0c89		*/
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x0c89
+.area 0x0c8a - 0x0c89
+
+
+	ret
+
+
+.endarea
+
+
+
+; #####################################################
+
+
+
+.if 0
+
+/*	Measure VRAM write performance	*/
+
+
+	ld hl, 0x9c00
+	ld de, 0xcdf1				; unused?
+
+	ld a, (0xd0c4)
+	ld (de), a
+
+	ld b, 0x20
+
+
+
+@@z_loop:
+	ldi (hl), a
+
+	dec b
+	jr nz, @@z_loop
+
+
+; ====================================================
+
+
+	ldh a, (0x44)				; ly
+	ld b, a
+
+	inc e						; cdf2 = unused?
+	ld a, (de)
+	cp b
+	ret nc
+
+	ld a, b
+	ld (de), a
+	ret
+
+
+.endif
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+/*
+0c8a - 0cc4 = racer_rank_precision
+0cc4 - 0d02 = unused
+*/

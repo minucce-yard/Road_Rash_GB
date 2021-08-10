@@ -1,0 +1,25 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+.relativeinclude on
+
+
+	.include "../@__free_space/test_vram_speed.txt"
+	.include "@__test_vram_speed.txt"
+
+
+	.include "closest_racer.txt"
+	.include "driver_distance.txt"
+	.include "player_rank.txt"
+
+
+.relativeinclude off

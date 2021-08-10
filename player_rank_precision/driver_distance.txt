@@ -1,0 +1,111 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+.org 0x5f09
+.area 0x5f4b - 0x5f09
+
+
+
+/*	Calculate distance from player	*/
+
+
+	ld a, (0xd01e+3)			; player position  (actual)
+	ld c, a
+	ld a, (0xd01f+3)
+	ld e, a
+	ld a, (0xd020+3)
+	ld d, a
+
+
+	ld a, l						; cdx2 = position-3
+	and a, 0xf0
+	or a, 0x02
+	ld l, a
+
+
+	ldd a, (hl)					; delta-3
+	sub a, c
+	ld c, a
+
+
+	dec l						; cdx0 = position-2
+	ldi a, (hl)					; delta-2
+	sbc a, e
+	ld e, a
+
+
+	ldd a, (hl)					; cdx1 = position-1
+	sbc a, d					; delta-1
+	ld d, a
+
+
+	call g_racer_rank_precision_distance
+
+
+; ====================================================
+
+
+	ld a, d						; check sign
+	bit 7, a
+	jr z, @@z_positive_check
+
+
+
+	inc a						; 80xxxx - FExxxx = limit
+	jr nz, @@z_negative_max
+
+
+	ld a, e						; FF80xx - FF88xx = limit
+	cp a, 0x88
+	jr nc, @@z_exit
+
+
+
+@@z_negative_max:
+	ld e, 0x88
+	jr @@z_exit
+
+
+; ====================================================
+
+
+@@z_positive_check:
+	or a						; 01xxxx - 7Fxxxx = limit
+	jr nz, @@z_positive_max
+
+
+	ld a, e						; 0078xx - 007Fxx = limit
+	cp a, 0x78
+	jr c, @@z_exit
+
+
+@@z_positive_max:
+	ld e, 0x78
+
+
+; ============================================
+
+
+@@z_exit:
+	ld a, l						; cdx7 = distance-2
+	and a, 0xf0
+	or a, 0x07
+	ld l, a
+
+
+	ld (hl), e
+	ret
+
+
+
+.endarea
+; .notice int(0x5f4b - orga())

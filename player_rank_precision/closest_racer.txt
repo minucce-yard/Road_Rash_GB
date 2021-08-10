@@ -1,0 +1,77 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+.org 0x639d
+.area 0x63c3 - 0x639d
+
+
+
+/*	Select closest racer based on distance	*/
+
+
+	ld hl, 0xcafc				; unsigned distance table
+	ld de, 0x7fff				; set max distance
+	ld bc, 0x0eff
+
+
+; ============================================
+
+
+@@z_loop:
+	ldd a, (hl)					; distance-3
+	sub a, c
+
+	ldd a, (hl)					; distance-2
+	sbc a, e
+
+	ldd a, (hl)					; distance-1
+	sbc a, d
+
+	jr nc, @@z_next				; shorter distance?
+
+
+; ==================================================
+
+
+	ld a, 0x0e					; police number
+	cp b
+	jr nz, @@z_store
+
+
+	ld a, (0xce0a)				; active duty
+	or a
+	jr z, @@z_next
+
+
+
+@@z_store:
+	call g_player_rank_precision_closest
+
+
+; ===============================================
+
+
+@@z_next:
+	dec b						; next racer
+
+
+	ld a, b						; 15 total
+	cp a, 0xff
+	jr nz, @@z_loop
+
+
+	ret
+
+
+
+.endarea
+; .notice int(0x63c3 - orga())

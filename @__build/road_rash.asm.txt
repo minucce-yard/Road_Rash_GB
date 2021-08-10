@@ -58,6 +58,8 @@ Indent:
 	.include "racer_name_symbols/main.txt"
 	.include "racer_sort_priority/main.txt"
 
+	.include "player_rank_precision/main.txt"
+
 .endif
 
 

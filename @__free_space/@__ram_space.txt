@@ -1,0 +1,18 @@
+/*
+c978-ca00 = x-scroll table  [unused parts]
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+ca78-cb00 = y-scroll table  [unused parts]
+
+-- ca78-cae0 = unused
+
+
+-- cad0-cb00 = racer_rank_precision
+   -- 45 bytes: distance 24-bit values  [15 racers]
+   --  3 bytes: reserved
+*/

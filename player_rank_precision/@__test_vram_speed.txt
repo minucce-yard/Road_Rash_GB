@@ -1,0 +1,120 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+.area 0x0cc4 - 0x0c8a
+
+
+
+g_racer_rank_precision_distance:
+	push hl
+
+
+	swap l						; current racer
+
+	ld a, l						; 24-bit data
+	add a, l
+	add a, l
+
+
+	ld hl, 0xcad0+2				; unsigned distance table
+	add a, l
+	ld l, a
+
+
+; ===================================================
+
+
+	bit 7, d
+	jr z, @@z_positive
+
+
+
+@@z_negative:
+	ld a, c						; unsigned distance-3
+	cpl
+	add a, 0x01
+	ldd (hl), a
+
+
+	ld a, e						; unsigned distance-2
+	cpl
+	adc a, 0x00
+	ldd (hl), a
+
+
+	ld a, d						; unsigned distance-1
+	cpl
+	adc a, 0x00
+	ld (hl), a
+
+
+	pop hl
+	ret
+
+
+; ===================================================
+
+
+@@z_positive:
+	ld (hl), c					; unsigned distance-3
+	dec l
+
+	ld (hl), e					; unsigned distance-2
+	dec l
+
+	ld (hl), d					; unsigned distance-1
+
+
+	pop hl
+	ret
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+g_player_rank_precision_closest:
+	ld a, (0xce18)				; race started
+	or a
+	ret nz
+
+
+; ===============================================
+
+
+	ld a, l
+
+	inc l
+	ld d, (hl)					; new unsigned distance-1
+
+	inc l
+	ld e, (hl)					; new unsigned distance-2
+
+	inc l
+	ld c, (hl)					; new unsigned distance-3
+
+	ld l, a
+
+
+
+	ld a, b						; closest racer
+	ld (0xce52), a
+
+
+	ret
+
+
+
+.endarea
+; .notice tohex(orga(),4)
+; .notice int(0x0cc4 - orga())
