@@ -33,8 +33,6 @@ Indent:
 	.include "zero_money_printer/main.txt"
 	.include "portrait_frame_corner/main.txt"
 
-	.include "player_rival_distance/main.txt"
-
 .endif
 
 
@@ -49,8 +47,6 @@ Indent:
 
 	.include "sky_animate_last/main.txt"
 
-	.include "skip_splash_screen/main.txt"
-
 	.include "speed_meter_precision/main.txt"
 	
 	.include "taller_bold_4/main.txt"
@@ -59,6 +55,9 @@ Indent:
 	.include "racer_sort_priority/main.txt"
 
 	.include "player_rank_precision/main.txt"
+	.include "player_rival_distance/main.txt"
+
+	.include "final_standing_rivals/main.txt"
 
 .endif
 
@@ -71,6 +70,8 @@ Indent:
 
 
 	.include "double_speed_hack/main.txt"
+
+	.include "skip_splash_screen/main.txt"
 
 .endif
 

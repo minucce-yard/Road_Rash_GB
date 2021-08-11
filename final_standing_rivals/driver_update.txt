@@ -1,0 +1,25 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+.org 0x5ee6
+.area 0x5ee9 - 0x5ee6
+
+
+/*	Update driver position	*/
+
+
+	call g_final_standing_driver_update
+
+
+
+.endarea
+; .notice int(0x5ee9 - orga())

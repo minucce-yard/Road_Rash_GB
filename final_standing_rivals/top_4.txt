@@ -1,0 +1,188 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+.org 0x62c2
+.area 0x6326 - 0x62c2
+
+
+
+/*	Final standings		*/
+
+
+	ld hl, 0xce55				; top racers table
+
+
+
+@@z_top_loop:
+	push hl
+
+
+	ld a, (hl)					; slot empty
+	cp a, 0xff
+
+	ld hl, 0xcd02				; distance table
+	jr z, @@z_sort_init
+
+
+
+	swap a						; re-add top racer
+	ld b, a
+	jr @@z_top_next
+
+
+; ================================================
+
+
+@@z_sort_init:
+	ld de, 0x0000				; max distance
+	ld c, d
+
+
+
+@@z_sort_loop:
+	ldd a, (hl)					; distance-3
+	dec l
+	sub a, c
+
+	ldi a, (hl)					; distance-2
+	sbc a, e
+
+	ldi a, (hl)					; distance-3
+	sbc a, d
+
+	jr c, @@z_sort_next			; distance >= max distance
+
+
+
+	ld c, (hl)					; new max distance-3
+	dec l
+	dec l
+
+	ld b, l						; new racer
+
+	ld e, (hl)					; new max distance-2
+	inc l
+
+	ld d, (hl)					; new max distance-1
+	inc l
+
+
+
+@@z_sort_next:
+	ld a, l						; next racer
+	add a, 0x10
+	ld l, a
+
+
+	cp a, 0xe2					; 14 rivals
+	jr nz, @@z_sort_loop
+
+
+; ================================================
+
+
+@@z_top_next:
+	ld l, b						; wipe top racer data
+	xor a
+	ldi (hl), a
+	ldi (hl), a
+
+
+	ld a, b						; top racer id
+	swap a
+
+	pop hl						; add top racer
+	ldi (hl), a
+
+
+
+	ld a, l						; 4 entries
+	cp a, 0x55+4
+	jr nz, @@z_top_loop
+
+
+	ret
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+/*	Clear table of top 4 racers		*/
+
+
+g_final_standing_rivals_init:
+	call 0x67f4					; police init
+
+
+	; hl = free
+	; af = free
+
+
+; ========================================
+
+
+	ld hl, 0xce55+3				; top racers table
+
+
+	ld a, 0xff					; clear top racers
+	ldd (hl), a
+	ldd (hl), a
+	ldd (hl), a
+	ld (hl), a
+
+
+	ret
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+/*	Player finished top 4	*/
+
+
+g_final_standing_player_finish:
+	ld (0xce63),a				; start finish timer
+
+
+; ===================================================
+
+
+	push hl
+
+
+	ld hl, 0xce55				; top 4 racers table
+
+
+	ld a, (0xd0f4)				; check player rank
+	cp a, 0x04+1
+	jr nc, @@z_exit
+
+
+	dec a						; add player (15) to table
+	add a, l
+	ld l, a
+	ld (hl), 0x0f
+
+
+
+@@z_exit:
+	pop hl
+	ret
+
+
+
+.endarea
+; .notice int(0x6326 - orga())

@@ -28,11 +28,6 @@ menu_border_top.ips
 
 
 
-player_rival_distance.ips
-*  Compute correct distance values from other drivers
-
-
-
 portrait_frame_corner.ips
 *  Fill in missing corner pixels on briefing portraits
 
@@ -71,8 +66,18 @@ better_loading_speed.ips
 
 
 
+final_standing_rivals.ips
+*  Lock each driver's rank after crossing the finish line
+
+
+
 player_rank_precision.ips
 *  Use more digits to determine accurate driver ranking
+
+
+
+player_rival_distance.ips
+*  Compute correct distance values from other drivers
 
 
 
@@ -83,11 +88,6 @@ racer_name_letters.ips
 
 racer_sort_priority.ips
 *  Print closest rivals who have higher veteran status
-
-
-
-skip_splash_screen.ips
-*  Press joypad button to skip logo screen
 
 
 
@@ -119,11 +119,20 @@ double_speed_hack.ips
 
 
 
+skip_splash_screen.ips
+*  Press joypad button to skip logo screen
+
+
+
 _______________________________________________
 
 
 
 Commits:
+
+19 - [2021-08-09]
+*  final_standing_rivals released
+
 
 
 18 - [2021-08-07]
@@ -294,6 +303,7 @@ Comments:
    -  Menu loading times can be somewhat improved perhaps
    -  Re-center dialogue text for less awkward spaces
    -  Sergio has 3 unused lines. Find way to add extra text?
+   -  Check unusual AI collision detection
 
 
 
@@ -321,15 +331,6 @@ Comments:
       Still feels like enough work.
 
 
-   Final rival rankings  (bug)
-   -  Computer drivers keep racing after crossing the line. Often they keep switching places until
-      results screen is shown. Ideally their rank should be locked in once they touch the marker.
-
-   -  A fix would require initializing CE55 table at race start.
-      Checking each driver as their position is updated.
-      And rewriting some fixed routines to handle this situation.
-
-
    SRAM saving
    -  Method to resume progress without entering password
 
@@ -353,24 +354,27 @@ Comments:
    d11f = 0-5  [palm forest]
    d120 = 0-5  [grass valley]
 
+   d121 = 0-5  [bike]
 
    d122-d123 = money  [16-bit lsb]
    -  0012 = $1200
    -  1000 = $100000
 
 
-   d125 = 0-5  [bike]
+
+   d01c-d01d = race distance  [16-bit lsb]
+   -  07e0 ~ 5.6 miles
 
 
    d01e-d020 = distance driven  [24-bit lsb]
-   -  07dfe3 ~ 5.6 miles
+   -  07e000 ~ 5.6 miles
 
 
    cfe5 = speed  [16-bit lsb]
    -  $94 * (3/4) ==> $6f  [111 mph]
 
 
-   ce63 = race flag
+   ce63 = race transition timer
    -  $00 = racing
    -  $01 = end race
 

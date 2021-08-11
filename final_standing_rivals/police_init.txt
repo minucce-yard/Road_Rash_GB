@@ -1,0 +1,26 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+.org 0x0254
+.area 0x0257 - 0x0254
+
+
+
+/*	Initialize police variables		*/
+
+
+	call g_final_standing_rivals_init
+
+
+
+.endarea
+; .notice int(0x0257 - orga())

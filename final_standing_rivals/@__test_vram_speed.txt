@@ -1,0 +1,100 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+.org 0x0cc4
+.area 0x0cf4 - 0x0cc4
+
+
+
+/*	Check if biker crossed finish line	*/
+
+
+g_final_standing_driver_update:
+	call 0x6248					; update position
+
+
+	; bc = free
+	; hl = driver data
+
+
+; ===============================================
+
+
+	ld a, l						; reset ptr
+	and a, 0xf0
+	ld l, a
+
+
+	ld a, (0xd01c)				; race end-2
+	ld c, a
+	ldi a, (hl)					; distance-2
+	sub a, c
+
+
+	ld a, (0xd01d)				; race end-1
+	ld b, a
+	ldd a, (hl)					; distance-1
+	sbc a, b
+
+	ret c						; distance >= race end
+
+
+; ===============================================
+
+
+	ld b, l						; driver id
+	swap b
+
+	ld c, 0x04					; 4 ranks
+
+
+	push hl
+	ld hl, 0xce55				; top 4 table
+
+
+
+@@z_loop:
+	ld a, (hl)					; racer recorded
+	cp b
+	jr z, @@z_exit
+
+
+	inc a						; slot taken
+	jr nz, @@z_next
+
+
+	ld (hl), b					; store racer id
+	jr @@z_exit
+
+
+
+@@z_next:
+	inc l						; next slot
+
+	dec c						; table full
+	jr nz, @@z_loop
+
+
+
+@@z_exit:
+	pop hl
+	ret
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.endarea
+; .notice tohex(orga(),4)
+; .notice int(0x0cf4 - orga())

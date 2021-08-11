@@ -1,0 +1,5 @@
+AI racers continue driving after player crosses finish line
+-  They can continually switch places until the final results screen is shown
+
+
+New version locks in their ranks as each one crosses the end.

@@ -1,0 +1,33 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+/*
+ROM1:6A9E 3E 80            ld   a,80
+ROM1:6AA0 EA 63 CE         ld   (CE63),a
+ROM1:6AA3 C9               ret  
+*/
+
+
+
+.org 0x6aa0
+.area 0x6aa3 - 0x6aa0
+
+
+
+/*	Player crossed finish line	*/
+
+	jp g_final_standing_player_finish
+
+
+
+.endarea
+; .notice int(0x6aa3 - orga())
