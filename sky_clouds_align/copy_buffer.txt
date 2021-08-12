@@ -1,0 +1,62 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+.org 0x0f41
+.area 0x0f59 - 0x0f41
+
+
+/*	Copy cloud scroll tables to draw buffer	*/
+
+
+	call g__copy_clouds_buffer_init
+
+
+	ld l, 0x40					; scx table
+
+
+; =============================================
+
+
+
+g__copy_clouds_buffer_start:
+	ld b, 0x04					; 16 bytes
+
+
+
+@@z__loop:
+	ldi a, (hl)
+	ld (de), a
+	inc e
+
+	ldi a, (hl)
+	ld (de), a
+	inc e
+
+	ldi a, (hl)
+	ld (de), a
+	inc e
+
+	ldi a, (hl)
+	ld (de), a
+	inc e
+
+
+
+	dec b
+	jr nz, @@z__loop
+
+
+	ret
+
+
+
+.endarea
+; .notice int(0x0f59 - orga())

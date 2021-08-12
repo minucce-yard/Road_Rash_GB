@@ -1,0 +1,192 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+.org 0x09c9
+.area 0x0a46 - 0x09c9
+
+
+
+/*	LYC (2) = sky 	*/
+
+
+	push af
+	push hl
+	push de
+
+
+	ld a, (0xcfda)				; no sky  (lines 00-19)
+	cp a, 0x1a
+	jr nc, @@z__09d8
+
+
+
+	call @z__sky_init_done
+
+	jp @@z__land				; switch to land drawing
+
+
+; =================================================
+
+
+@@z__09d8:
+	ld a, (0xce6b)				; $00 = init sky table
+	or a
+	call z, @z__sky_init
+
+
+
+	ld h, 0xcb					; cb20 table  [scy, lyc]
+	ld l, a
+
+
+	ldi a, (hl)					; cache <scy>
+	ld d, a
+
+	ld e, (hl) 					; cache <lyc>
+
+
+	ld a, e						; next LYC irq
+	dec a
+	ldh (0x45), a
+
+
+	ld a, l						; cb30 table  [16-bit scx]
+	xor 0x10
+	ld l, a
+
+	ld l, (hl)					; cache <scx>
+
+
+; =======================================
+
+
+@@z__draw_sky_wait:
+	ldh a, (0x41)				; wait not active draw
+	and a, 0x02
+	jr nz, @@z__draw_sky_wait
+
+
+
+	ld a, l						; scx
+	ldh (0x43), a
+
+
+	ld a, d						; load scy
+	inc e						; cp e, 0x00 ==> no more sky
+	dec e
+	jr z, @@z__mountain
+
+
+
+	dec a						; scy
+	ldh (0x42), a
+
+
+	ld a, (0xce6b)				; next sky segment
+	inc a
+	inc a
+	ld (0xce6b), a
+
+
+	jr @@z__lcd_exit
+
+
+; =======================================
+
+
+@@z__mountain:
+	ldh (0x42), a				; scy
+
+
+
+@@z__land:
+	ld a, (0xcfda)				; lyc = horizon line
+	ld (0xcfdc), a
+	ldh (0x45), a
+
+
+	ld hl, 0xd162				; horizon code  (0a46)
+	ld a, 0x0a
+	ldd (hl), a
+	ld (hl), 0x46
+
+
+; =======================================
+
+
+@@z__lcd_exit:
+	ei							; check next line irq
+
+	pop de
+	pop hl
+	pop af
+	reti
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+/*	Cache first line of sky data, while in VBlank routine	*/
+
+
+@z__sky_init:
+	ld hl, 0xcb20 | 0x01		; sky table = [scy, lyc]
+
+
+
+@@z__sky_init_loop:
+	ld a, (hl)					; $ff = no segment
+	inc a
+	jr nz, @z__sky_init_done
+
+
+	inc l						; next sky segment
+	inc l
+	jr @@z__sky_init_loop
+
+
+; =================================================
+
+
+@z__sky_init_done:
+	ld a, 0x83					; lcdc
+	ldh (0x40), a
+
+
+	ld a, (0xcfa1)				; bgp
+	ldh (0x47), a
+
+
+	dec l						; cache sky data ptr
+	ld a, l
+	ld (0xce6b), a
+
+	ret
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+g__copy_clouds_buffer_init:
+	ld hl, 0xcb00				; scy buffer
+	ld de, 0xcb20				; draw buffer
+
+
+	jp g__copy_clouds_buffer_start
+
+
+
+.endarea
+; .notice int(0x0a46 - orga())

@@ -1,0 +1,37 @@
+Cloud tiles often use wrong texture line during rendering
+-  Lots of data is computed before scanline starts drawing
+   Often goes past h-blank period and corrupts pixels
+
+
+
+Reduce amount of math needed to draw each line
+-  Do scroll table lookup in V-Blank
+-  Pre-write static PPU values in V-Blank
+
+-  Cache scroll values before H-Blank
+-  Wait h-blank to avoid PPU misfires  (flashing dots)
+
+-  ASM optimize
+
+
+
+________________________________________________
+
+
+
+Release 19.1
+
+
+Unusual glitch occurs when vblank triggers as cloud scroll tables are being generated
+-  Creates a texture misalignment with scroll-x  (dirty $CB40 values)
+
+
+
+Requires buffering technique
+-  cb00 --> cb20 = scy table
+-  cb40 --> cb30 = scx table  (* new)
+
+
+1. When cloud positions are done, $CFA6 is set
+2. $0F41 memcpy work buffer to draw buffer
+3. Sky renderer uses $CB30 data and glitch is gone

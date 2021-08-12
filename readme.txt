@@ -130,6 +130,13 @@ _______________________________________________
 
 Commits:
 
+
+19.1 - [2021-08-11]
+*  sky_clouds_align updated
+   -  rare flicker glitch  [original]
+
+
+
 19 - [2021-08-09]
 *  final_standing_rivals released
 
