@@ -1,0 +1,31 @@
+World objects are drawn on top of the bottom HUD
+-  Should be rendered behind it or invisible
+
+
+
+When dashboard line is reached
+*  Turn off OBJ layer
+*  Upload new OAM data
+*  Turn on OBJ layer
+
+
+
+Because we start in h-blank, run priority items first
+
+
+
+_____________________________________________________
+
+
+
+Release 19.2
+
+
+Road flickers when too many sprites are on same line
+-  Not enough h-blank + oam-blank time to write ppu
+   Usually it's color register that goes bad
+
+
+
+HUD line check is done after ppu writes
+*  When scanline reached, manually wait for next h-blank instead of relying on irq

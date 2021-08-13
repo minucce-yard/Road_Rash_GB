@@ -20,6 +20,7 @@ gbc_compatible.ips
 
 hud_sprite_top.ips
 *  Draw world sprites behind dashboard
+*  Reduce road pixel flicker
 
 
 
@@ -129,6 +130,12 @@ _______________________________________________
 
 
 Commits:
+
+
+19.2 - [2021-08-12]
+*  hud_sprite_top updated
+   -  reduced road flicker  [original]
+
 
 
 19.1 - [2021-08-11]
@@ -306,7 +313,6 @@ Comments:
 
 
 *  Shopping cart:
-   -  Sometimes sky flickers due to bad mis-timing when creating scroll info
    -  Menu loading times can be somewhat improved perhaps
    -  Re-center dialogue text for less awkward spaces
    -  Sergio has 3 unused lines. Find way to add extra text?
@@ -321,7 +327,6 @@ Comments:
 *  Hardware limitations:
 
    - When lots of sprites on-screen (2 cars + several racers), tiles may briefly drop out.
-     Road may also flicker during these events.
 
 
 

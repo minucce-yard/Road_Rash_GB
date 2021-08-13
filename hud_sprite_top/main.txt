@@ -10,23 +10,21 @@ License:
 
 
 .org 0x0a77
-.area 0x0ab7 - 0x0a77
+.area 0x0ad9 - 0x0a77
 
 
-/*	HBlank = road	*/
+
+/*	HBlank = road drawing	*/
 
 
 	push af
 	push hl
 
 
-	ldh a, (0x44)				; ly ?= HUD line  (77+)
-	cp a, 0x77-1
-	jr z, @z_0a93
-
+	ldh a, (0x44)				; next LY line
+	inc a
 
 	ld h, 0xc8					; c8xx table
-	inc a
 	ld l, a
 
 
@@ -42,18 +40,34 @@ License:
 	ldh (0x47), a
 
 
-	pop hl
-	pop af
-	reti
+
+; ##############################################
 
 
-; =========================================
+
+	ld a, l						; check HUD line
+	cp a, 0x77-1
+	jr nz, @@z__exit
 
 
-	nop
+
+	ld a, 0x01					; LCD = vblank only
+	ldh (0xff), a
 
 
-@z_0a93:
+	ld hl, 0xcfa3
+
+
+
+@@z__spin:
+	ldh a, (0x41)				; wait h-blank
+	and a, 0x02
+	jr nz, @@z__spin
+
+
+; =============================================
+
+
 	ld a, 0x8b ^ 0x02			; lcdc = obj off
 	ldh (0x40), a
 
@@ -68,16 +82,13 @@ License:
 	ldh (0x47), a
 
 
-	call 0xff8a					; OAM dma
+	call 0xff8a					; copy OAM sprites
 
 
-; ===============================================
-
-
-	ld a, (0xcfa3)				; obp1
+	ldi a, (hl)					; obp1
 	ldh (0x48), a
 
-	ld a, (0xcfa4)				; obp2
+	ld a, (hl)					; obp2
 	ldh (0x49), a
 
 
@@ -85,8 +96,40 @@ License:
 	ldh (0x40), a
 
 
-	ld a, 0x01					; disable LCD interrupt
-	ldh (0xff), a
+; ==============================================
+
+
+	call 0x04d9
+	call 0x04bf					; tone register
+	call 0x043e					; sound
+
+
+
+	ld a, (0xcfa6)				; sky scroll done
+	or a
+	jr z, @@z__exit
+
+
+	call 0x0f41					; copy sky clouds tables
+
+
+	ld a, (0xcfdd)
+	ld (0xcfda), a
+
+	xor a						; make next frame
+	ld (0xcfa6), a
+
+
+; =========================================================
+
+
+@@z__exit:
+	pop hl
+	pop af
+
+	reti
+
 
 
 .endarea
+; .notice int(0x0ad9 - orga())
