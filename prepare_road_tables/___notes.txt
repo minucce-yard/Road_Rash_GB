@@ -1,0 +1,6 @@
+When drawing road, strange strips of mis-colored lines can appear
+-  Rendering can interrupt buffer copy operation, splitting road into two parts  (old, new)
+
+
+
+ASM optimize routine and make it copy forward, reducing chance of mid-splits

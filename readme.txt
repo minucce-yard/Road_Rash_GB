@@ -10,16 +10,23 @@ ______________________________________________________________
 
 
 
-Basic:
-
-
-distant_car_visible.ips
-*  Keep distant vehicles visible
-
+Minimum: critical fixes
 
 
 gbc_compatible.ips
 *  Playable on Color, Advance handhelds
+
+
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+Basic: priority fixes
+
+
+distant_car_visible.ips
+*  Keep distant vehicles visible
 
 
 
@@ -34,8 +41,8 @@ menu_border_top.ips
 
 
 
-portrait_frame_corner.ips
-*  Fill in missing corner pixels on briefing portraits
+prepare_road_tables.ips
+*  Reduce mid-road tearing during drawing
 
 
 
@@ -64,7 +71,7 @@ zero_money_printer.ips
 
 
 
-Plus:
+Plus: recommended fixes
 
 
 better_loading_speed.ips
@@ -84,6 +91,11 @@ player_rank_precision.ips
 
 player_rival_distance.ips
 *  Compute correct distance values from other drivers
+
+
+
+portrait_frame_corner.ips
+*  Fill in missing corner pixels on briefing portraits
 
 
 
@@ -116,7 +128,7 @@ taller_bold_4.ips
 
 
 
-Special:
+Special: minor enhancements
 
 
 double_speed_hack.ips
@@ -135,6 +147,11 @@ _______________________________________________
 
 
 Commits:
+
+
+21 - [2021-08-14]
+*  prepare_road_tables released
+
 
 
 20 - [2021-08-14]

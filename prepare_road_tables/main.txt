@@ -1,0 +1,73 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+.org 0x4662
+.area 0x4681 - 0x4662
+
+
+/*	Copy road tables to draw buffer		*/
+
+
+	ld a, (0xd1ed)				; horizon line
+	ld l, a
+	ld b, a
+
+
+	inc l						; line 1
+
+
+; =====================================================
+
+
+@@z__loop:
+	ld h, 0xc5					; c5xx = scx
+	ld a, (hl)
+	cpl
+	inc a
+	ld e, a
+
+	inc h						; c6xx = bgp
+	ld d, (hl)
+
+	inc h						; c7xx = scy
+	ld a, (hl)
+
+
+	inc h						; c8xx = scx-draw
+	ld (hl), e
+
+	inc h						; c9xx = scy-draw
+	sub l
+	ld (hl), a
+
+	inc h						; caxx = bgp-draw
+	ld (hl), d
+
+
+; =================================================
+
+
+	inc l						; next line
+
+
+	ld a, l						; hud line
+	cp a, 0x77+1
+	jr nz, @@z__loop
+
+
+	ld l, b						; horizon line
+	nop
+
+
+
+.endarea
+; .notice int(0x4681 - orga())
