@@ -1,0 +1,219 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+.org 0x0ff7
+.area 0x1028 - 0x0ff7
+
+
+/*	Copy name to VRAM	*/
+
+
+	ld a, (0xd0b4)
+	or a
+	ret z
+
+
+	ld hl, 0xd0b1
+	inc (hl)
+
+	ld a, (hl)
+	cp a, 0x04
+	jr nz, @z__vram_ptr
+
+	ld l, 0xb4					; d0b4 = 00
+	ld (hl), 0x00
+
+
+
+@z__vram_ptr:
+	dec a
+
+	add a, a
+	add a, a
+	add a, a
+	add a, a
+	add a, 0x20
+
+	ld e, a						; vram dst (enemy name)
+	ld d, 0x96
+
+	add a, 0x31 - 0x20			; src tile
+	ld l, a
+
+	ld a, 0xd0
+	adc a, 0x00
+	ld h, a
+
+
+	jr @z__write_tile			; copy tile
+
+
+
+.endarea
+; .notice int(0x1028 - orga())
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x1028
+.area 0x1079 - 0x1028
+
+
+/*
+	warning: shared 8x8 tile copy routine
+
+
+	hl = src tile  (dxx1)
+	de = vram dst  (9xx0)
+*/
+
+
+@z__write_tile:
+	ldi a, (hl) :: cpl :: ld (de), a :: inc e 
+	ldi a, (hl) :: cpl :: ld (de), a :: inc e 
+	ldi a, (hl) :: cpl :: ld (de), a :: inc e 
+	ldi a, (hl) :: cpl :: ld (de), a :: inc e 
+
+	ldi a, (hl) :: cpl :: ld (de), a :: inc e 
+	ldi a, (hl) :: cpl :: ld (de), a :: inc e 
+	ldi a, (hl) :: cpl :: ld (de), a :: inc e 
+	ldi a, (hl) :: cpl :: ld (de), a :: inc e 
+
+	ldi a, (hl) :: cpl :: ld (de), a :: inc e 
+	ldi a, (hl) :: cpl :: ld (de), a :: inc e 
+	ldi a, (hl) :: cpl :: ld (de), a :: inc e 
+	ldi a, (hl) :: cpl :: ld (de), a :: inc e 
+
+	ldi a, (hl) :: cpl :: ld (de), a :: inc e 
+	ldi a, (hl) :: cpl :: ld (de), a :: inc e 
+	ldi a, (hl) :: cpl :: ld (de), a :: inc e 
+	ld  a, (hl) :: cpl :: ld (de), a
+
+	ret
+
+
+
+.endarea
+; .notice int(0x1079 - orga())
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x10bc
+.area 0x10d4 - 0x10bc
+
+
+/*	Copy name to VRAM	*/
+
+
+	ld hl, 0xd071				; tile src
+	ld de, 0x95e0				; vram dst  (player name)
+
+	add a, a
+	add a, a
+	add a, a
+	add a, a
+	ld c, a
+
+	add a, e
+	ld e, a
+	ld a, 0x00
+	adc a, d
+	ld d, a
+
+
+	ld a, c
+	add a, l
+	ld l, a
+
+	ld a, h
+	adc a, 0x00
+	ld h, a
+
+
+.endarea
+; .notice int(0x10d4 - orga())
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x10f7
+.area 0x110f - 0x10f7
+
+
+/*	Copy name to VRAM	*/
+
+
+	ld hl, 0xd071				; tile src
+	ld de, 0x95e0				; vram dst  (player name)
+
+	add a, a
+	add a, a
+	add a, a
+	add a, a
+	ld c, a
+
+	add a, e
+	ld e, a
+	ld a, 0x00
+	adc a, d
+	ld d, a
+
+
+	ld a, c
+	add a, l
+	ld l, a
+
+	ld a, h
+	adc a, 0x00
+	ld h, a
+
+
+.endarea
+; .notice int(0x110f - orga())
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x0fc7
+.area 0x0fd7 - 0x0fc7
+
+
+/*	hl = rom, de = 8f90		*/
+
+
+@@z__loop:
+	ldi a, (hl) :: ld (de), a :: inc e
+	ldi a, (hl) :: ld (de), a :: inc e
+	ldi a, (hl) :: ld (de), a :: inc e
+	ldi a, (hl) :: ld (de), a :: inc e
+
+	dec b
+	jr nz, @@z__loop
+	
+	ret
+
+
+
+.endarea
+; .notice int(0x0fd7 - orga())

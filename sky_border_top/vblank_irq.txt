@@ -1,0 +1,254 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+.org 0x0b3e
+.area 0x0c0e - 0x0b3e
+
+
+/* 	VBlank handler 	*/
+
+
+	push af
+	push hl
+	push de
+	push bc
+
+
+	xor a						; clear lcd irq
+	ldh (0x0f), a
+
+
+	ld a, (0xd15c)				; game mode
+	or a						; 0 = racing, 1+ = menu
+	jp nz, 0x0c13
+
+
+	inc a						; rom bank 1
+	ld (0x2100),a
+
+
+; =========================================
+
+
+	call @z__write_tiles		; vram upload
+	call 0x0f00					; copy world sprites
+	call 0xff80					; oam dma
+
+
+
+/*	Remaining time is very short when many sprites on-screen	*/
+
+	ld a, (0xcfa2)				; obp0
+	ldh (0x48), a
+
+	ld a, (0xcfa0)				; obp1
+	ldh (0x49), a
+
+
+	xor a						; reset sky segment
+	ld (0xce6b), a
+
+	call 0x09c9					; simulate DMG STAT bug
+	di							; reti
+
+
+; =============================================
+
+
+	ld a, (0xcfda)				; no sky  (00-19)
+	cp a, 0x1a
+	jr nc, @@z__racing
+
+
+
+@@z__loading:
+	xor a
+	ldh (0x42),a				; scy
+	ldh (0x43),a				; scx
+	jr @@z__end
+
+
+
+@@z__racing:
+	ld hl, 0xd162				; LCD interrupt handler  (09c9)
+	ld a, 0x09
+	ldd (hl), a
+	ld (hl), 0xc9
+
+
+
+@@z__end:
+	ld a, 0x40					; enable LYC irq
+	ldh (0x41), a
+
+	ld a, 0x03					; allow LCD interrupts
+	ldh (0xff), a
+
+	xor a						; clear bad IRQs
+	ldh (0x0f), a
+
+
+	ei							; allow pending lyc
+	call 0x113c					; restore rom1 bank
+
+
+; =============================================
+
+
+@z__0b72:
+	ld hl, 0xd0c4
+	inc (hl)
+
+	ld hl, 0xd101
+	inc (hl)
+
+	ld hl, 0xcfa7
+	inc (hl)
+
+
+
+@z__0b87:
+	ld a, (0xcfe0)
+	or a
+	jr z, @z__0b91
+
+	dec a
+	ld (0xcfe0), a
+
+
+
+@z__0b91:
+	ld a, (0xce54)
+	or a
+	jr z, @z__0b9d
+
+	dec a
+	and a, 0x1f
+	ld (0xce54), a
+
+
+
+@z__0b9d:
+	ld a, (0xce53)
+	or a
+	jr z, @z__0ba9
+
+	dec a
+	and a, 0x3f
+	ld (0xce53), a
+	
+	
+
+@z__0ba9:
+	ld a, (0xce04)
+	inc a
+	and a, 0x3f
+
+	ld (0xce04), a
+	jr nz, @z__0bfe
+
+
+
+	ld a, (0xce05)
+	inc a
+	daa
+	ld (0xce05), a
+
+	cp a, 0x60
+	jr nz, @z__0bfe
+
+	xor a
+	ld (0xce05),a
+
+
+
+	ld a, (0xce06)
+	inc a
+	daa
+	ld (0xce06), a
+
+
+
+@z__0bfe:
+	ld hl, 0xcdf4
+	ldh a, (0x44)
+	ldd (hl), a					; Unused ??
+	ld (hl), 0xff				; Unused ??
+
+
+; ==========================
+
+
+@z_exit:
+	pop bc
+	pop de
+	pop hl
+	pop af
+
+	reti
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+/*	Split VRAM transfers	*/
+
+
+@z__write_tiles:
+	ld a, (0xcfa7)				; frame #
+
+	or a						; 00 = player name
+	jp z, 0x10e5
+
+	dec a						; 01 = enemy name
+	jp z, 0x0ff7
+
+	dec a						; 02 = miles
+	jp z, 0x0f9f
+
+	dec a						; 03 = health, mph, rank
+	jp z, @z__0f69
+
+	ret
+
+
+.endarea
+; .notice int(0x0c0e - orga())
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x0f59
+
+
+
+.org 0x0f63
+.area 0x0f69 - 0x0f63
+
+
+
+/*	Combine VRAM transfers	*/
+
+
+@z__0f69:
+	call 0x0fe7					; mph
+	call 0x0fd7					; rank
+								; health
+
+
+
+.endarea
+; .notice int(0x0f69 - orga())

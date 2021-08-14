@@ -1,0 +1,81 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+.org 0x0f00
+
+
+
+.org 0x0f1f
+.area 0x0f41 - 0x0f1f
+
+
+
+/*	Copy world sprites to work buffer	*/
+
+
+	srl b						; 2x unroll
+
+	inc b						; odd number
+	jr c, @@z__loop2
+
+	dec b						; even number
+
+
+
+@@z__loop1:
+	ldi a, (hl)					; sprite y
+	ld (de), a
+	inc e
+
+	ldi a, (hl)					; sprite x
+	ld (de), a
+	inc e
+
+	ldi a, (hl)					; tile #
+	ld (de), a
+	inc e
+
+	ldi a, (hl)					; attribute
+	ld (de), a
+	inc e
+
+
+
+@@z__loop2:
+	ldi a, (hl)					; sprite y
+	ld (de), a
+	inc e
+
+	ldi a, (hl)					; sprite x
+	ld (de), a
+	inc e
+
+	ldi a, (hl)					; tile #
+	ld (de), a
+	inc e
+
+	ldi a, (hl)					; attribute
+	ld (de), a
+	inc e
+
+
+; ==================================================
+
+
+	dec b
+	jr nz, @@z__loop1
+
+	ret
+
+
+
+.endarea
+; .notice int(0x0f41 - orga())

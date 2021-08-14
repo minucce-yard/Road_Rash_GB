@@ -1,0 +1,41 @@
+VRAM processing takes too much time, damaging the sky tiles on top of screen
+-  Engine tries do too much in the same vblank frame
+
+
+
+VBlank handler must run faster
+-  Simulate DMG STAT bug manually
+-  Split upload transfers based on HUD updates  [4 frames]
+-  ASM optimize based on memory targets
+
+
+
+__________________________________________________________
+
+
+
+11.2 - [2021-07-25]
+
+
+adc fixes
+-  xor clears carry flag  [!]
+   ld a, $00 replacement is safe
+
+
+
+__________________________________________________________
+
+
+
+
+19.3 - [2021-08-13]
+
+
+Sprite buffer copy operations take too much time
+-  Wipes data for off-screen sprites
+*  Strange flashing randomly appears on screen top
+
+
+
+Leave off-screen sprites alone as they are invisible anyway
+-  Also unroll transfer loop to improve speed

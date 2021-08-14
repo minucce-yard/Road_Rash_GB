@@ -132,9 +132,15 @@ _______________________________________________
 Commits:
 
 
+19.3 - [2021-08-13]
+*  sky_border_top updated
+   -  reduce sky flicker  [original]
+
+
+
 19.2 - [2021-08-12]
 *  hud_sprite_top updated
-   -  reduced road flicker  [original]
+   -  reduce road flicker  [original]
 
 
 
