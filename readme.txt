@@ -13,6 +13,11 @@ ______________________________________________________________
 Basic:
 
 
+distant_car_visible.ips
+*  Keep distant vehicles visible
+
+
+
 gbc_compatible.ips
 *  Playable on Color, Advance handhelds
 
@@ -130,6 +135,11 @@ _______________________________________________
 
 
 Commits:
+
+
+20 - [2021-08-14]
+*  distant_car_visible released
+
 
 
 19.3 - [2021-08-13]
@@ -292,10 +302,10 @@ Comments:
 
 
 *  PRESS select button
-   -  Race course: opens password, name menu
+   -  Course select: opens password, name menu
    -  Password: opens credits screen
    -  In-game race: shows bike health
-   -  Race results: opens bike shop menu
+   -  Post-race results: opens bike shop menu
 
 
 
@@ -304,17 +314,19 @@ Comments:
 
 
 *  Sometimes you'll see the same racer names repeatedly
-   -  When some rivals fall behind, they can aggressively cling to your tail.
+   -  When some rivals fall behind, they can aggressively cling to your tail
 
-   -  Some rashers have different bikes, with major (de-)acceleration bonuses.
-      If you're fast, you can see them zip up the ranks in the distance.
+   -  Some rashers have different bikes, with major (de-)acceleration bonuses
+      If you're fast, you can see them zip up the ranks in the distance
 
-   -  During player crashes, veterans who are far ahead will actually take a break.
-      When the player resumes driving, they will re-start their bikes.
+   -  During player crashes, veterans who are far ahead will actually take a break
+      When the player resumes driving, they will re-start their bikes
 
 
 
 *  Stage clear: place 4th or higher in each course
+   -  Passwords are reset after the promotion screen
+      Check options menu for new code
 
 
 
@@ -322,7 +334,6 @@ Comments:
    -  Menu loading times can be somewhat improved perhaps
    -  Re-center dialogue text for less awkward spaces
    -  Sergio has 3 unused lines. Find way to add extra text?
-   -  Check unusual AI collision detection
 
 
 
@@ -331,7 +342,6 @@ Comments:
 
 
 *  Hardware limitations:
-
    - When lots of sprites on-screen (2 cars + several racers), tiles may briefly drop out.
 
 
@@ -351,6 +361,10 @@ Comments:
 
    SRAM saving
    -  Method to resume progress without entering password
+
+
+   Expanded font
+   -  Add lower-case letters  (4x8 thin, 8x8 bold)
 
 
 

@@ -1,0 +1,7 @@
+Car in right lane tends to disappear when moving away from player
+-  Some ypos distance range check fails
+
+
+
+0:1ADB has camera distance check to player
+-  Some values have to be expanded to stay on-screen longer

@@ -1,0 +1,19 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+.org 0x785c
+	.byte 0xfd-3			; right car (far back)
+
+
+
+.org 0x77ff
+	.byte 0xfd-2			; left car (far back)
