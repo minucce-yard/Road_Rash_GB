@@ -19,16 +19,19 @@ License:
 	push af
 
 
-@z_2963:
-	ldh a, (0x41)				; stat ?= not active draw
+
+@@z__blank:
+	ldh a, (0x41)				; blank time
 	and a, 0x03
-	jr z, @z_2963
+	jr z, @@z__blank
 
 
-@z_296a:
-	ldh a, (0x41)				; stat ?= active draw
+
+@@z__drawing:
+	ldh a, (0x41)				; active draw
 	and a, 0x03
-	jr nz, @z_296a
+	jr nz, @@z__drawing
+
 
 
 	pop af
@@ -36,3 +39,4 @@ License:
 
 
 .endarea
+; .notice int(0x2973 - orga())

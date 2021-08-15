@@ -16,88 +16,108 @@ License:
 /*	Decompress tiles to vram	*/
 
 
-	ldi a, (hl)					; bc = out size
+	ldi a, (hl)						; bc = out size
 	ld c, a
 	ldi a, (hl)
 	ld b, a
 
-	ld de, 0x8000				; dst
+	ld de, 0x8000					; dst
 
 
 
-@z_decoder_loop:
-	ldi a, (hl)					; control byte
-	bit 7,a						; 8x (raw)
-	jr z, @z_decoder_rle
+@z__decoder_loop:
+	ldi a, (hl)						; control byte
+	bit 7,a							; 8x (raw)
+	jr z, @z__decoder_rle
 
 
 ; =======================================
 
 
-@z_decoder_raw:
-	and a, 0x7f					; run length
+@z__decoder_raw:
+	and a, 0x7f						; run length
 	inc a
 
 
 
-@@z_loop:
+@@z__loop:
 	push af
-	call z_wait_blank			; write vram when ready
+	call g__wait_blank				; write vram when ready
 
 
-	ldi a, (hl)					; raw byte
+	ldi a, (hl)						; raw byte
 	ld (de), a
 
-	inc de						; next dst
-	dec bc						; total left
+	inc de							; next dst
+	dec bc							; total left
 
 
-	pop af						; run left
+	pop af							; run left
 	dec a
-	jr nz, @@z_loop
+	jr nz, @@z__loop
 
 
-	jr @z_exit
+	jr @z__exit
 
 
 ; =======================================
 
 
-@z_decoder_rle:
-	inc a						; run length
+@z__decoder_rle:
+	inc a							; run length
 
 
-@@z_loop:
+
+@@z__loop:
 	push af
-	call z_wait_blank			; write vram when ready
+	call g__wait_blank				; write vram when ready
 
 
-	ld a, (hl)					; rle byte
+	ld a, (hl)						; rle byte
 	ld (de), a
 
-	inc de						; next dst
-	dec bc						; total left
+	inc de							; next dst
+	dec bc							; total left
 
 
-	pop af						; run left
+	pop af							; run left
 	dec a
-	jr nz, @@z_loop
+	jr nz, @@z__loop
 
 
-	inc hl						; next src
+	inc hl							; next src
 
 
 ; =======================================
 
 
-@z_exit:
-	ld a, b						; total out
+@z__exit:
+	ld a, b							; total out
 	or c
-	jr nz, @z_decoder_loop
+	jr nz, @z__decoder_loop
 
 
-	pop af
 	ret
 
 
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+/*	Wait until refresh period	*/
+
+/*	note: VRAM still usable during OAM refresh (2) -- plus no sprites	*/
+
+
+g__wait_blank:
+	ldh a, (0x41)					; active draw  (2,3)
+	and a, 0x02
+	jr nz, g__wait_blank
+
+	ret								; a = 0x00
+
+
+
 .endarea
+; .notice int(0x12e5 - orga())

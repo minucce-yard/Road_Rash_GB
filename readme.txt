@@ -149,6 +149,12 @@ _______________________________________________
 Commits:
 
 
+21.1 - [2021-08-15]
+*  better_transfer_speed updated
+   -  little faster overall
+
+
+
 21 - [2021-08-14]
 *  prepare_road_tables released
 
@@ -348,7 +354,6 @@ Comments:
 
 
 *  Shopping cart:
-   -  Menu loading times can be somewhat improved perhaps
    -  Re-center dialogue text for less awkward spaces
    -  Sergio has 3 unused lines. Find way to add extra text?
 

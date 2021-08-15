@@ -13,116 +13,134 @@ License:
 .area 0x1df9 - 0x1d97
 
 
-	ld a, (0xce62)				; ptr table
+/*	Upload sprite tiles to VRAM		*/
+
+
+	ld a, (0xce62)					; ptr table
 	add a, a 
 	add a, 0xf9
 	ld l, a
 
-	ld a, 0x00					; keep carry - no xor
-	adc a, 0x1d
+	ld a, 0x1d						; keep carry - no xor
+	adc a, 0x00
 	ld h, a
 
 
 ; ================================================
 
 
-	ld a, 0x02					; rom bank 02
+	ld a, 0x02						; rom bank 02
 	call 0x112a
 
 
-	ldi a, (hl)					; off-road shoulder sprites
+
+	ldi a, (hl)						; off-road shoulder sprites
 	ld e, a
 	ld d, (hl)
 
 	ld hl, 0x8bb0
 	ld bc, 0x0240
-	call @z_upload
+	call @z__upload
 
 
 
-	ld hl, 0x8df0				; on-road hazard sprites
+	ld hl, 0x8df0					; on-road hazard sprites
 	ld de, 0x7b0f
 	ld bc, 0x0110
-	call @z_upload
+	call @z__upload
 
 
 ; ==============================================
 
 
-	ld a, 0x06					; rom bank 06
+	ld a, 0x06						; rom bank 06
 	call 0x112a
 
 
-	ld hl, 0x8fb0				; pause sprite
+	ld hl, 0x8fb0					; pause sprite
 	ld de, 0x763e
 	ld b, 0x28
 
 
-@@z_loop:
-	call z_wait_blank
-	ld a, (de)					; byte 1
+
+@@z__loop:
+	call g__wait_blank
+	ld a, (de)						; byte 1
 	ldi (hl), a
 
 
-	call z_wait_blank
-	xor a						; byte 2
+	call g__wait_blank				; a = $00
 	ldi (hl), a
 
 
 	inc e
 	inc e
 	dec b
-	jr nz, @@z_loop
+	jr nz, @@z__loop
 
 
 ; ==============================================
 
 
-	ld a, 0x01					; rom bank 01
+	inc a							; rom bank 01
 	call 0x112a
 
 
 	ret
 
 
+
 ; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
-@z_upload:
+
+@z__upload:
 	inc b
 
 
-@@z_loop:
-	call z_wait_blank
+@@z__loop:
+	call g__wait_blank
 
-	ld a, (de)					; write tile
+	ld a, (de)						; write tile
 	ldi (hl), a
 
 
 	inc de
 	dec c
-	jr nz, @@z_loop
+	jr nz, @@z__loop
 
 
 	dec b
-	jr nz, @@z_loop
+	jr nz, @@z__loop
 
 
 	ret
+
 
 
 ; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
+
 /*	Wait until refresh period	*/
 
+/*	note: VRAM still usable during OAM refresh (2) -- plus no sprites	*/
 
-z_wait_blank:
-	ldh a, (0x41)				; stat ?= active draw
+
+g__wait_blank_af:
+	push af
+
+
+@@z__loop:
+	ldh a, (0x41)					; active draw  (2,3)
 	and a, 0x02
-	jr nz, z_wait_blank
+	jr nz, @@z__loop
 
+
+	pop af
 	ret
 
 
+
 .endarea
+; .notice int(0x1df9 - orga())

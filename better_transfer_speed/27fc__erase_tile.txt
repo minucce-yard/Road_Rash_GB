@@ -15,6 +15,7 @@ License:
 
 /*	Erase vram tiles	*/
 
+
 	ld a, 0x80					; lcd = blank screen
 	ldh (0x40), a
 
@@ -22,18 +23,19 @@ License:
 
 
 
-@@z_loop:
-	ldh a, (0x41)				; stat ?= active draw
+@@z__loop:
+	ldh a, (0x41)				; active draw
 	and a, 0x02
-	jr nz, @@z_loop
+	jr nz, @@z__loop
 
 	ldd (hl), a					; wipe tile  (00)
 
 
 	bit 7, h					; 8000-9fff
-	jr nz, @@z_loop
+	jr nz, @@z__loop
 
 	ret
 
 
 .endarea
+; .notice int(0x280f - orga())

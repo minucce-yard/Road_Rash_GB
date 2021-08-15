@@ -1,0 +1,32 @@
+Some loading screens take extra time due to video timing alignment.
+-  Engine only uploads 1 tile every h-blank.
+
+
+
+Code is re-wired to use available h.v-blank time, which results in better performance
+-  OAM time (2) lasts some time after H-Blank (1) is done
+
+
+
+__________________________________________________________
+
+
+
+11.2 - [2021-07-25]
+
+
+adc fixes
+-  xor clears carry flag
+-  ld a, $00 is safe
+
+
+
+___________________________________________________________
+
+
+
+21.1 - [2021-08-15]
+
+
+More cases added
+-  Saving af does not have much penalty

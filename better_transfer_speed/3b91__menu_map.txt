@@ -1,0 +1,72 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+.org 0x3b91
+
+
+
+; #####################################################
+
+
+
+.org 0x3b99
+.area 3
+
+
+	call g__wait_blank_af
+
+
+.endarea
+
+
+
+; #####################################################
+
+
+
+.org 0x3ba1
+.area 3
+
+
+	call g__wait_blank_af
+
+
+.endarea
+
+
+
+; #####################################################
+
+
+
+.org 0x3bad
+.area 3
+
+
+	call g__wait_blank_af
+
+
+.endarea
+
+
+
+; #####################################################
+
+
+
+.org 0x3bbc
+.area 3
+
+
+	call g__wait_blank_af
+
+
+.endarea
