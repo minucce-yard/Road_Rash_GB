@@ -9,6 +9,9 @@ License:
 */
 
 
+.definelabel SKY_BORDER_TOP, 1
+
+
 .relativeinclude on
 
 

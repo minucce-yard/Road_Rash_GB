@@ -149,6 +149,11 @@ _______________________________________________
 Commits:
 
 
+21.2 - [2021-08-16]
+*  cleanup
+
+
+
 21.1 - [2021-08-15]
 *  better_transfer_speed updated
    -  little faster overall
@@ -355,7 +360,7 @@ Comments:
 
 *  Shopping cart:
    -  Re-center dialogue text for less awkward spaces
-   -  Sergio has 3 unused lines. Find way to add extra text?
+   -  Sergio has 3 unused lines
 
 
 
@@ -387,6 +392,10 @@ Comments:
 
    Expanded font
    -  Add lower-case letters  (4x8 thin, 8x8 bold)
+
+
+   Extra dialogue
+   -  Switch speakers when replaying certain courses  (Level 1, Sergio)
 
 
 
