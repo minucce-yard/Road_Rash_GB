@@ -1,0 +1,127 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+.org 0x2cf1
+.area 0x2d05 - 0x2cf1
+
+
+/*	Load string data	*/
+
+
+	ld a, 0x20000 / 0x4000			; bank 8
+	call 0x112a
+
+
+	call @z__script_expand
+
+
+	call 0x1131						; bank 1
+
+
+	jr nc, 0x2d0d					; special text
+	jr 0x2d05						; normal text
+
+
+.endarea
+; .notice int(0x2d05 - orga())
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.orga 0x20000
+.area 0x20040 - orga()
+.headersize 0x4000 - orga()
+
+
+/*	Check for special strings	*/
+
+
+@z__script_expand:
+	ld hl, 0xd11c					; rank table
+	ld a, (0xce62)					; stage
+	add a, l
+	ld l, a
+
+
+	ld a, (hl)						; replay course
+	or a
+	jr z, @@z__normal
+
+
+; ===================================================
+
+
+	ld c, 0x09						; sergio
+
+
+
+@@z__sergio1:
+	ld a, e							; stage 4 -- pacific coast
+	cp a, 0x30
+	jr nz, @@z__sergio2
+
+
+	ld b, 0x22						; string  (luna)
+	ld a, 0x1c						; text height
+	ret
+
+
+
+@@z__sergio2:
+	cp a, 0x39						; stage 4 -- grass valley
+	jr nz, @@z__sergio3
+
+
+	ld b, 0x23						; string  (mirrors)
+	ld a, 0x20						; text height
+	ret
+
+
+
+@@z__sergio3:
+	cp a, 0x3c						; stage 5 -- sierra nevada
+	jr nz, @@z__stage1
+
+
+	ld b, 0x21						; string  (finish)
+	ld a, 0x1c						; text height
+	ret
+
+
+; ================================================
+
+
+@@z__stage1:
+	ld a, (0xd11b)					; stage 1
+	dec a
+	jr nz, @@z__normal
+
+
+	ld hl, 0x6b67					; alternate table
+	scf
+	ret
+
+
+
+@@z__normal:
+	ld hl, 0x6b1c					; normal string
+	scf
+	ret
+
+
+
+.headersize 0
+.endarea
+; .notice int(0x20040 - orga())

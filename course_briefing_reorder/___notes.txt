@@ -1,0 +1,16 @@
+Stage 1 has alternate text which randomly is used per course
+-  Sergio also has 3 unused lines
+
+
+
+Order is adjusted to play regular stage 1 briefings first
+-  On replays, backup alternate text is then used
+
+
+
+Also during replays, Sergio's cut lines are shown
+-  Level 4 = Pacific Coast
+-  Level 4 = Grass Valley
+-  Level 5 = Sierra Nevada
+
+Raw string values are loaded instead of table lookup

@@ -95,7 +95,11 @@ Indent:
 /*	Special	*/
 
 
+	.include "course_briefing_reorder/main.txt"
+
 	.include "double_speed_hack/main.txt"
+
+	.include "rom_battery_expansion/main.txt"
 
 	.include "skip_splash_screen/main.txt"
 

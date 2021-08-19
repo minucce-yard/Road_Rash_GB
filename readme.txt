@@ -131,9 +131,35 @@ taller_bold_4.ips
 Special: minor enhancements
 
 
+course_briefing_reorder.ips
+*  Stage 1:
+   -  Shows regular dialogue on first play
+   -  Shows alternate text on course replay
+
+
+*  Add Sergio's unused lines on race replays
+   -  Level 4 = Pacific Coast
+   -  Level 4 = Grass Valley
+   -  Level 5 = Sierra Nevada
+
+
+#  Requires rom_battery_expansion
+
+
+
+
 double_speed_hack.ips
 *  Turn on double speed DMG mode
--  Emulator hack required
+
+#  Emulator hack required
+
+
+
+
+rom_battery_expansion.ips
+*  Expands MMC1 ROM to 256 KB
+   Adds battery 2KB SRAM
+
 
 
 
@@ -147,6 +173,12 @@ _______________________________________________
 
 
 Commits:
+
+
+22 - [2021-08-17]
+*  course_briefing_reorder released
+   rom_battery_expansion released
+
 
 
 21.2 - [2021-08-16]
@@ -360,7 +392,6 @@ Comments:
 
 *  Shopping cart:
    -  Re-center dialogue text for less awkward spaces
-   -  Sergio has 3 unused lines
 
 
 
@@ -392,10 +423,6 @@ Comments:
 
    Expanded font
    -  Add lower-case letters  (4x8 thin, 8x8 bold)
-
-
-   Extra dialogue
-   -  Switch speakers when replaying certain courses  (Level 1, Sergio)
 
 
 

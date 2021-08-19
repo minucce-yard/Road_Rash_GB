@@ -1,0 +1,21 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+.org 0x0147
+	.db 0x03						; MBC1 + RAM + BATTERY
+	.db 0x03						; 256 KB ROM
+	.db 0x01						; 2 KB SRAM
+
+
+
+.org 0x3ffff
+	.db 0x00
