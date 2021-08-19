@@ -1,0 +1,22 @@
+Menu screens randomly show strange garbage on top of screen
+-  Draw scroll window is not reset on-time during V-Blank
+
+
+
+Run priority items first (PPU registers), then non-critical stuff
+
+
+
+___________________________________________________________
+
+
+
+22.1 - [2021-08-18]
+
+
+Video data transfers can be interrupted by very long VBlank IRQs
+-  An incorrect reading of mode 0/1 pre-IRQ becomes invalid
+
+
+
+Detect condition and wait for h-blank before leaving ISR

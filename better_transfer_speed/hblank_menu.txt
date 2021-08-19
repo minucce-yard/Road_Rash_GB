@@ -1,0 +1,150 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+.org 0x0de0
+.area 0x0df2 - orga()
+
+
+	call @z__bgp1
+
+
+; =======================================
+
+
+	call 0x2962					; wait next h-blank
+
+	pop af
+	reti
+
+
+
+; ##################################################
+
+
+
+@z__bgp1:
+	ld a, (0xd157)				; bgp1
+	ldh (0x47), a
+
+	jp @z__bgp2
+
+
+
+.endarea
+; .notice int(0x0df2 - orga())
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x0e2f
+.area 0x0e45 - orga()
+
+
+	call @z__bgp1
+
+
+	ld a, 0x08					; scy
+	ldh (0x42), a
+
+
+; =======================================
+
+
+	call 0x2962					; wait next h-blank
+
+	pop af
+	reti
+
+
+
+; ##################################################
+
+
+
+@z__bgp2:
+	call 0x2962
+	call 0x2962
+
+	jp @z__bgp3
+
+
+
+.endarea
+; .notice int(0x0e45 - orga())
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x0e74
+.area 0x0e86 - orga()
+
+
+	call @z__bgp1
+
+
+; =======================================
+
+
+	call 0x2962					; wait next h-blank
+
+	pop af
+	reti
+
+
+
+; ##################################################
+
+
+
+@z__bgp3:
+	ld a, (0xd155)				; bgp2
+	ldh (0x47), a
+
+	ret
+
+
+.endarea
+; .notice int(0x0e86 - orga())
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x0ea6
+.area 0x0ebc - orga()
+
+
+	call @z__bgp1
+
+
+	ld a, 0x47					; lyc
+	ldh (0x45), a
+
+
+; =======================================
+
+
+	call 0x2962					; wait next h-blank
+
+	pop af
+	reti
+
+
+.endarea
+; .notice int(0x0e86 - orga())

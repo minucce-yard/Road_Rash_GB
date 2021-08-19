@@ -9,12 +9,28 @@ License:
 */
 
 
+
 .relativeinclude on
+
+
+
+/*	No IRQs	*/
 
 
 	.include "1d3f__world_map_tile.txt"
 	.include "1e03__world_tile.txt"
 	.include "1e2a__world_map.txt"
+
+	.include "write_world_tile.txt"				; [1d97]  g__wait_blank
+	.include "write_world_sprite.txt"			; [12ae]  g__wait_blank_af
+
+
+
+; ===========================================================
+
+
+
+/*	IRQs	*/
 
 
 	.include "27fc__erase_tile.txt"
@@ -27,6 +43,8 @@ License:
 	.include "3347__menu_map.txt"
 	.include "3649__shop_tile.txt"
 	.include "368b__shop_map.txt"
+
+
 	.include "38d2__menu_map.txt"
 	.include "3912__menu_tile.txt"
 	.include "3956__menu_tile.txt"
@@ -41,8 +59,9 @@ License:
 	.include "3d4b__menu_tile.txt"
 	.include "3d5b__menu_tile.txt"
 
-	.include "write_world_tile.txt"				; g__wait_blank
-	.include "write_world_sprite.txt"			; g__wait_blank_af
+
+	.include "hblank_menu.txt"
+
 
 
 .relativeinclude off

@@ -30,3 +30,19 @@ ___________________________________________________________
 
 More cases added
 -  Saving af does not have much penalty
+
+
+
+___________________________________________________________
+
+
+
+22.1 - [2021-08-18]
+
+
+Video data transfers can be interrupted by h-blank IRQs
+-  An incorrect reading of mode 0/1 pre-IRQ becomes invalid
+
+
+
+Detect condition and wait for h-blank before leaving ISR

@@ -9,28 +9,34 @@ License:
 */
 
 
+
 .org 0x0c0e
-.area 0x0c13 - 0x0c0e
+.area 0x0c13 - orga()
 
 
-	jr 0x0c13					; update menu sound later
+/*	Menu V-Blank routine	*/
+
+	jr 0x0c13						; update menu sound later
 
 
 .endarea
 
 
+
 ; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
+
 .org 0x0d7f
-.area 0x0d9a - 0x0d7f
+.area 0x0d9a - orga()
+
 
 
 /*	Warning: Shared entry point		*/
 
 
 @z_0d7f:
-	ld a, 0x03					; menu irq
+	ld a, 0x03					; enable lcd irq
 
 
 
@@ -60,24 +66,51 @@ License:
 	pop bc
 	pop de
 	pop hl
-	pop af
 
-	reti
+
+	jp @z__exit
+
 
 
 .endarea
+; .notice int(0x0d9a - orga())
+
 
 
 ; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
+
 .org 0x0c6e
-.area 0x0c89 - 0x0c6e
+.area 0x0c89 - orga()
+
 
 
 @z_0c6e:
-	ld a, 0x01					; boot irq
+	ld a, 0x01					; vblank irq
 	jp @z_menu
 
 
+
+; ###########################################
+
+
+
+@z__exit:
+	ldh a, (0x44)				; check v-blank  (90-98)
+	cp a, 0x90
+	jr nc, @@z__done
+
+
+	call 0x2962					; wait h-blank start  (LY 00-8F)
+
+
+
+@@z__done:
+	pop af
+	reti
+
+
+
 .endarea
+; .notice int(0x0c89 - orga())

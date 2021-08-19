@@ -1,5 +1,0 @@
-Menu screens randomly show strange garbage on top of screen.
--  Draw scroll window is not reset on-time during V-Blank.
-
-
-Run priority items first (PPU registers), then non-critical stuff.

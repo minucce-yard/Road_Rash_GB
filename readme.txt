@@ -175,6 +175,13 @@ _______________________________________________
 Commits:
 
 
+22.1 - [2021-08-18]
+*  menu_border_top updated
+   better_transfer_speed updated
+   -  IRQ exit during h-blank to fix rare timing glitches
+
+
+
 22 - [2021-08-17]
 *  course_briefing_reorder released
    rom_battery_expansion released
