@@ -1,0 +1,71 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+.org 0x2d3c
+.area 0x2d68 - orga()
+
+
+	ld a, (0xd0f4)					; player rank  (1-15)
+	or a
+	ret z
+
+
+	cp a, 0x04						; limit 4
+	jr c, @@z__table
+
+	ld a, 0x04
+
+
+
+@@z__table:
+	dec a
+	ld b, a
+
+
+	ld a, (0xd11b)					; stage #
+	dec a
+
+	add a, a						; 4 per table
+	add a, a
+	add a, b
+	add a, 0xb6						; 6db6
+	ld l, a
+	ld h, 0x6d
+
+
+	ld b, (hl)						; race earnings
+
+
+; ===================================================
+
+
+	ld hl, 0xd122					; player money
+
+
+	ld a, (hl)						; money-2
+	add a, b
+	daa
+	ldi (hl), a
+
+
+	ld a, (hl)						; money-1
+	adc a, 0x00
+	daa
+	ld (hl), a
+
+
+	ret
+
+
+
+.endarea
+; .notice int(0x2d68 - orga())

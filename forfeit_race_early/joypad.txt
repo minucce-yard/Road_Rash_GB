@@ -1,0 +1,95 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+.org 0x294d
+.area 0x2959 - orga()
+
+
+	ld a, 0x20000 / 0x4000			; bank 8
+	call 0x112a
+
+
+	call @z__joypad_reset
+
+
+	pop bc							; restore bank 1
+	jp 0x1131
+
+
+.endarea
+; .notice int(0x2959 - orga())
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.orga 0x20040
+.area 0x20070 - orga()
+.headersize 0x4000 - (orga() / 0x4000 * 0x4000)
+
+
+/*	Joypad soft reset	*/
+
+
+@z__joypad_reset:
+	ld a, c							; a + b + start + select
+	cp a, 0x0f
+	jr nz, @@z__exit
+
+
+	ld a, (0xd15c)					; not racing mode
+	or a
+	jr z, @@z__racing
+
+
+
+@@z__reset:
+	jp 0x0150						; soft reset
+
+
+; ===============================================
+
+
+@@z__racing:
+	ld a, (0xce18)					; race not started
+	or a
+	jr z, @@z__reset
+
+
+
+	ld a, 0x02						; end race
+	ld (0xce63), a
+
+
+	xor a							; no rank
+	ld (0xd0f4), a
+
+	ld c, a							; clear joypad
+
+
+
+@@z__exit:
+	ld a, c							; joypad bits
+	ld (0xd0c0), a
+
+
+	ret
+
+
+
+.endarea
+; .notice int(0x20070 - orga())
+
+
+.headersize 0

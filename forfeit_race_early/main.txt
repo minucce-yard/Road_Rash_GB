@@ -1,0 +1,19 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+.relativeinclude on
+
+
+	.include "joypad.txt"
+	.include "money.txt"
+
+
+.relativeinclude off

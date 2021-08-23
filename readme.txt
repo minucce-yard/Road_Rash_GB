@@ -156,6 +156,15 @@ double_speed_hack.ips
 
 
 
+forfeit_race_early 
+*  Drop out of race before it starts with no penalty  (A + B + SELECT + START)
+   Easier access to bike shop by skipping race
+
+#  Requires rom_battery_expansion
+
+
+
+
 rom_battery_expansion.ips
 *  Expands MMC1 ROM to 256 KB
    Adds battery 2KB SRAM
@@ -181,6 +190,11 @@ _______________________________________________
 
 
 Commits:
+
+
+24 - [2021-08-21]
+*  forfeit_race_early released
+
 
 
 23 - [2021-08-20]
