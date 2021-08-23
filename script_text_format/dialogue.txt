@@ -1,0 +1,639 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+.loadtable "TextTable.txt"
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.orga 0x18000
+.area 0x18c71 - orga()
+.headersize 0x4000 - orga()
+
+
+
+@msg_4b:
+	;         ====  Natasha  =====
+	.stringn "Ready for a new bike"
+	.stringn "yet? Don't spend all"
+	.stringn "your cash. Save some"
+	.string  "for fines and wrecks"
+
+
+
+@msg_4c:
+	;         ====  Natasha  =====
+	.stringn " Sometimes the only "
+	.stringn "way to lose a cop is"
+	.stringn " to slow down, then "
+	.string  "      dust'em."
+
+
+
+@msg_4d:
+	;         ====  O'Leary  =====
+	.stringn " Please don't drive "
+	.stringn " so fast. The sarge "
+	.stringn "  is getting upset  "
+	.string  "  with you people."
+
+
+
+@msg_4e:
+	;         =====  Biff  =======
+	.stringn " Be a sport. Take a "
+	.stringn "fall and drop out of"
+	.stringn " the race. There's  "
+	.string  "money in it for you."
+
+
+
+@msg_4f:
+	;         ====   Slater  ======
+	.stringn "   I am so fast.    "
+	.stringn "Sometimes it scares "
+	.stringn " me, so I close my  "
+	.string  "       eyes."
+
+
+
+; ================================================
+
+
+
+@msg_02:
+	;         ====  Natasha  =====
+	.stringn "Some of these jerks "
+	.stringn " would rather fight "
+	.stringn "  than race. Watch  "
+	.string  "yourself out there."
+
+
+
+@msg_03:
+	;         ====  Natasha  =====
+	.stringn "Viper's got a club. "
+	.stringn "If he swings at you,"
+	.string  "      grab it."
+
+
+
+@msg_04:
+	;         ====  Natasha  =====
+	.stringn " Keep your distance "
+	.stringn "  from Maddog. The  "
+	.string  "  guy's an animal."
+
+
+
+@msg_05:
+	;         ====  Natasha  =====
+	.stringn "Be careful. Officer "
+	.stringn " O'Connor is almost "
+	.string  "as tough as Maddog."
+
+
+
+@msg_06:
+	;         ====  Natasha  =====
+	.stringn "You're pretty good. "
+	.stringn "Let's ride with the "
+	.stringn " next gang. Bigger  "
+	.string  "risks, bigger bucks."
+
+
+
+@msg_07:
+	;         ====  Natasha  =====
+	.stringn "We're up against the"
+	.string  "  vet rashers now."
+
+
+
+@msg_08:
+	;         ====  Natasha  =====
+	.stringn "Congratulations. You"
+	.stringn "are one of the vets."
+	.stringn "  How long can you  "
+	.string  "    stay on top?"
+
+
+
+; ================================================
+
+
+
+@msg_09:
+	;         ====  O'Leary  =====
+	.stringn " You don't want to  "
+	.stringn "get me mad. I can be"
+	.stringn " a pretty tough guy "
+	.string  " when I want to be."
+
+
+
+@msg_0a:
+	;         ====  O'Leary  =====
+	.stringn " Excessive speed is "
+	.stringn "dangerous. Does your"
+	.stringn " mother know where  "
+	.string  "      you are?"
+
+
+
+; ================================================
+
+
+
+@msg_0b:
+	;         ====  O'Rourke  ====
+	.stringn " The last rasher to "
+	.stringn " try outrunnin' me  "
+	.stringn "was a skidmark when "
+	.string  "   I was through."
+
+
+
+@msg_0c:
+	;         ====  O'Rourke  ====
+	.stringn "Believe me kid, this"
+	.stringn " ticket is only the "
+	.stringn "  beginning of the  "
+	.string  "       hurt."
+
+
+
+; ================================================
+
+
+
+@msg_0d:
+	;         =====  Flynn  ======
+	.stringn " Be fly, sly boy or "
+	.stringn " I'm gonna put you  "
+	.string  " out like the trash."
+
+
+
+@msg_0e:
+	;         =====  Flynn  ======
+	.stringn "Yo, speedo. Give it "
+	.stringn "a rest or jail's in "
+	.string  " your near future."
+
+
+
+; ================================================
+
+
+
+@msg_0f:
+	;         =====  O'Shea  =====
+	.stringn " I usually give the "
+	.stringn " rasher a chance to "
+	.stringn " run before I haul  "
+	.string  "      them in."
+
+
+
+@msg_10:
+	;         =====  O'Shea  =====
+	.stringn "  Kinda slow for a  "
+	.stringn " rasher. I had you  "
+	.string  " pegged as a loser."
+
+
+
+; ================================================
+
+
+
+@msg_11:
+	;         ====  O'Connor  ====
+	.stringn "Do you think I like "
+	.stringn "chasing you people, "
+	.stringn " knocking you down, "
+	.string  "dragging you in? Yup"
+
+
+
+@msg_12:
+	;         ====  O'Connor  ====
+	.stringn "   Seventh ticket   "
+	.stringn "  today. I'm on a   "
+	.string  "       roll!"
+
+
+
+; ================================================
+
+
+
+@msg_13:
+	;         =====  Biff  =======
+	.stringn "It's a great day to "
+	.stringn "face a challenge on "
+	.stringn "the open road. Best "
+	.string  "  of luck friend!"
+
+
+
+@msg_14:
+	;         =====  Biff  =======
+	.stringn "Did I tell you that "
+	.stringn " my bike was custom "
+	.string  "built? Very pricey. "
+
+
+
+@msg_15:
+	;         =====  Biff  =======
+	.stringn " You don't have to  "
+	.stringn "   worry about me   "
+	.stringn "fighting dirty. I'm "
+	.string  "    a sportsman!"
+
+
+
+@msg_16:
+	;         =====  Biff  =======
+	.stringn " Be a sport. Take a "
+	.stringn "fall and drop out of"
+	.stringn " the race. There's  "
+	.string  "money in it for you."
+
+
+
+; ================================================
+
+
+
+@msg_17:
+	;         =====  Slater  =====
+	.stringn "Do you believe that "
+	.stringn "Biff dude? Man, what"
+	.string  "     a mouth!"
+
+
+
+@msg_18:
+	;         =====  Slater  =====
+	.stringn "I am tweekin'. If I "
+	.stringn "see Dread, I'm going"
+	.stringn "  to make him eat   "
+	.string  "       dust."
+
+
+
+@msg_19:
+	;         =====  Slater  =====
+	.stringn "  I am sooo fast.   "
+	.stringn "Sometimes it scares "
+	.stringn " me, so I close my  "
+	.string  "       eyes."
+
+
+
+@msg_1a:
+	;         =====  Slater  =====
+	.stringn " Chaos factor is my "
+	.stringn "mantra. Never think "
+	.stringn "or do the same thing"
+	.string  "       twice."
+
+
+
+@msg_1b:
+	;         =====  Slater  =====
+	.stringn "Superior technique, "
+	.stringn "speed meister. Time "
+	.string  "to fry bigger trout."
+
+
+
+; ================================================
+
+
+
+@msg_1c:
+	;         =====  Ikira  ======
+	.stringn "Be fast. That is the"
+	.stringn "best way to win. Let"
+	.stringn "   the rest fight   "
+	.string  "amongst themselves."
+
+
+
+@msg_1d:
+	;         =====  Ikira  ======
+	.stringn " Don't let her name "
+	.stringn "fool ya. Angel is no"
+	.string  "       saint."
+
+
+
+@msg_1e:
+	;         =====  Ikira  ======
+	.stringn " I believe the best "
+	.stringn " riders only fight  "
+	.string  "  when forced to."
+
+
+
+@msg_1f:
+	;         =====  Ikira  ======
+	.stringn "Great racing! There "
+	.stringn " is new competition "
+	.string  "  waiting for us."
+
+
+
+; ================================================
+
+
+
+@msg_20:
+	;         =====  Sergio  =====
+	.stringn "Listen to my cycle, "
+	.stringn " purring like a big "
+	.stringn "   cat, ready to    "
+	.string  "      pounce."
+
+
+
+@msg_21:
+	;         =====  ?????  ======
+	.stringn " I wait for you at  "
+	.stringn "  the finish line,  "
+	.string  "  amigo. Yes, no?"
+
+
+
+@msg_22:
+	;         =====  ?????  ======
+	.stringn " Luna, she is loco. "
+	.stringn "She swings her club "
+	.string  "   into my face."
+
+
+
+@msg_23:
+	;         =====  ?????  ======
+	.stringn "   I do not need    "
+	.stringn "mirrors on my bike. "
+	.stringn "What is behind me, I"
+	.string  " do not care about."
+
+
+
+; ================================================
+
+
+
+@msg_24:
+	;         =====  Maddog  =====
+	.stringn "I get pleasure from "
+	.stringn " dragging newcomers "
+	.stringn "  down the road by  "
+	.string  "   their ankles."
+
+
+
+@msg_25:
+	;         =====  Maddog  =====
+	.stringn "  Sometimes I pull  "
+	.stringn "over and laugh at my"
+	.stringn " victims after they "
+	.string  "       fall."
+
+
+
+@msg_26:
+	;         =====  Maddog  =====
+	.stringn "The skulls on my gas"
+	.stringn " tank? They're like "
+	.string  " notches on a gun."
+
+
+
+@msg_27:
+	;         =====  Maddog  =====
+	.stringn "    I think it's    "
+	.stringn " important to enjoy "
+	.stringn "what you do. I enjoy"
+	.string  "   causing pain."
+
+
+
+; ================================================
+
+
+
+@msg_45:
+	;         ====  O'Connor  ====
+	.stringn "You're at the end of"
+	.stringn " your luck and the  "
+	.stringn " bill is due. Game  "
+	.string  "     over, bud."
+
+
+
+@msg_46:
+	;         =====  Sergio  =====
+	.stringn "It's finito amigo. I"
+	.stringn "weep for you, but I "
+	.string  "pity your camshaft."
+
+
+.endarea
+; .notice int(0x18c71 - orga())
+
+
+.headersize 0
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x6c6d
+.area 0x6c77 - 0x6c6d
+
+
+	.dh @msg_4b						; Stage 1 - alternate
+	.dh @msg_4c
+	.dh @msg_4d
+	.dh @msg_4e
+	.dh @msg_4f
+
+
+.endarea
+
+
+; ============================================
+
+
+.org 0x6bdb
+.area 0x6c27 - 0x6bdb
+
+
+	.dh @msg_02						; Natasha
+	.dh @msg_03
+	.dh @msg_04
+	.dh @msg_05
+	.dh @msg_06
+	.dh @msg_07
+	.dh @msg_08
+
+
+	.dh @msg_09						; Police
+	.dh @msg_0a
+	.dh @msg_0b
+	.dh @msg_0c
+	.dh @msg_0d
+	.dh @msg_0e
+	.dh @msg_0f
+	.dh @msg_10
+	.dh @msg_11
+	.dh @msg_12
+
+
+	.dh @msg_13						; Biff
+	.dh @msg_14
+	.dh @msg_15
+	.dh @msg_16
+
+
+	.dh @msg_17						; Slater
+	.dh @msg_18
+	.dh @msg_19
+	.dh @msg_1a
+	.dh @msg_1b
+
+
+	.dh @msg_1c						; Ikira
+	.dh @msg_1d
+	.dh @msg_1e
+	.dh @msg_1f
+
+
+	.dh @msg_20						; Sergio
+	.dh @msg_21
+	.dh @msg_22
+	.dh @msg_23
+
+
+	.dh @msg_24						; Maddog
+	.dh @msg_25
+	.dh @msg_26
+	.dh @msg_27
+
+
+.endarea
+
+
+
+; ============================================
+
+
+
+.org 0x6c61
+.area 0x6c65 - 0x6c61
+
+
+	.dh @msg_45						; Game Over - Busted
+	.dh @msg_46						; Game Over - Wrecked
+
+
+.endarea
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x6af8
+.area 0x6b76 - 0x6af8
+
+
+	.db 0x04, 0x45, 0x20			; Game Over - Busted
+	.db 0x09, 0x46, 0x1C			; Game Over - Wrecked
+
+
+	.db 0x00, 0x0A, 0x20			; Police Ticket
+	.db 0x01, 0x0C, 0x20
+	.db 0x02, 0x0E, 0x1C
+	.db 0x03, 0x10, 0x1C
+	.db 0x04, 0x12, 0x1C
+
+
+	.db 0x05, 0x06, 0x20			; Stage Clear
+	.db 0x07, 0x1B, 0x1C
+	.db 0x08, 0x1F, 0x1C
+	.db 0x05, 0x07, 0x1C
+	.db 0x05, 0x08, 0x20
+
+
+
+; 0x6b1c
+
+
+	.db 0x05, 0x02, 0x20			; Stage 1
+	.db 0x00, 0x09, 0x20
+	.db 0x06, 0x13, 0x20
+	.db 0x05, 0x03, 0x1C
+	.db 0x07, 0x17, 0x1C
+
+
+	.db 0x07, 0x18, 0x20			; Stage 2
+	.db 0x06, 0x14, 0x1C
+	.db 0x01, 0x0B, 0x20
+	.db 0x07, 0x19, 0x20
+	.db 0x06, 0x15, 0x20
+
+
+	.db 0x02, 0x0D, 0x1C			; Stage 3
+	.db 0x08, 0x1C, 0x20
+	.db 0x07, 0x1A, 0x20
+	.db 0x08, 0x1D, 0x1C
+	.db 0x06, 0x16, 0x20
+
+
+	.db 0x0A, 0x24, 0x20			; Stage 4
+	.db 0x05, 0x04, 0x1C
+	.db 0x03, 0x0F, 0x20
+	.db 0x0A, 0x26, 0x1C
+	.db 0x08, 0x1E, 0x1C
+
+
+	.db 0x05, 0x05, 0x1C			; Stage 5
+	.db 0x0A, 0x25, 0x20
+	.db 0x09, 0x20, 0x20
+	.db 0x0A, 0x27, 0x20
+	.db 0x04, 0x11, 0x20
+
+
+; 0x6b67
+
+
+	.db 0x00, 0x4D, 0x20			; Stage 1 - alternate
+	.db 0x05, 0x4B, 0x20
+	.db 0x07, 0x4F, 0x20
+	.db 0x06, 0x4E, 0x20
+	.db 0x05, 0x4C, 0x20
+
+
+.endarea

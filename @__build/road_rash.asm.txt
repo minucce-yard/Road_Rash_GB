@@ -52,6 +52,8 @@ Indent:
 
 	.include "distant_car_visible/main.txt"
 
+	.include "script_text_format/main.txt"
+
 
 .endif
 

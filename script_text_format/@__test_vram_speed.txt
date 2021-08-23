@@ -1,0 +1,33 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+
+.loadtable "TextTable.txt"
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x0cf4
+.area 0x0d02 - orga()
+
+
+
+g__bike_owned:
+	.stringn "it's yours"
+
+
+
+.endarea
+; .notice int(0x0d02 - orga())

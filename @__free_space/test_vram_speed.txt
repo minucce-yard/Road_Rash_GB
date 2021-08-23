@@ -80,7 +80,7 @@ License:
 
 
 /*
-0c8a - 0cc4 = racer_rank_precision
+0c8a - 0cc4 = player_rank_precision
 0cc4 - 0cf4 = final_standing_rivals
-0cf4 - 0d02 = unused
+0cf4 - 0d02 = script_text_format
 */

@@ -128,7 +128,7 @@ taller_bold_4.ips
 
 
 
-Special: minor enhancements
+Special: minor fixes, enhancements
 
 
 course_briefing_reorder.ips
@@ -163,6 +163,14 @@ rom_battery_expansion.ips
 
 
 
+script_text_format.ips
+*  Re-centers dialogue for easier reading
+
+#  Requires rom_battery_expansion
+
+
+
+
 skip_splash_screen.ips
 *  Press joypad button to skip logo screen
 
@@ -173,6 +181,11 @@ _______________________________________________
 
 
 Commits:
+
+
+23 - [2021-08-20]
+*  script_text_format released
+
 
 
 22.1 - [2021-08-18]
@@ -398,7 +411,7 @@ Comments:
 
 
 *  Shopping cart:
-   -  Re-center dialogue text for less awkward spaces
+   -  Empty
 
 
 
@@ -473,13 +486,17 @@ Comments:
 
    ce63 = race transition timer
    -  $00 = racing
-   -  $01 = end race
+   -  $02 = end race
 
 
-   ce65 = race ending
+   ce65 = race flag
    -  $00 = normal
    -  $01 = busted
-   -  $02 = wrecked
+
+
+   ce66 = race flag
+   -  $00 = normal
+   -  $01 = wrecked
 
 
    ce0a = police flag

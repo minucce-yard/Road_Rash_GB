@@ -1,0 +1,5 @@
+Text missing some dots and overly padded centering
+
+
+
+Reduces double, triple spaces and re-aligns text format.

@@ -1,0 +1,1 @@
+20000-20040 = script_text_format

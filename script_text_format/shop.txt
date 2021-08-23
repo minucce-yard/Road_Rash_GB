@@ -1,0 +1,114 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+.loadtable "TextTable.txt"
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.orga 0x1993d
+.area 0x19d03 - orga()
+.headersize 0x4000 - orga()
+
+
+
+	.stringn "    shuriken 400    "
+	.stringn "credit         cost "
+	.stringn "$              $4000"
+	.stringn "  Big on Handling,  "
+	.stringn "  short on power.   "
+	.stringn "Must maintain speed "
+	.stringn "through the corners "
+	.string  "    on this one.    "
+
+
+
+	.stringn "     panda 600      "
+	.stringn "credit         cost "
+	.stringn "$              $5000"
+	.stringn "Good all-round sport"
+	.stringn "bike. Light steering"
+	.stringn "but lacks mid-range "
+	.stringn "    performance.    "
+	.string  "                    "
+
+
+
+	.stringn "     banzai 750     "
+	.stringn "credit         cost "
+	.stringn "$              $7000"
+	.stringn "Crisp handling with "
+	.stringn " good power at high "
+	.stringn "  RPM but no mid-   "
+	.stringn "range. Try and keep "
+	.string  "   the revs high.   "
+
+
+
+	.stringn "   shuriken 1000    "
+	.stringn "credit         cost "
+	.stringn "$             $10000"
+	.stringn " Extreme speed but  "
+	.stringn " its size makes for "
+	.stringn " slower turning and "
+	.stringn "stopping. Plan your "
+	.string  "       turns.       "
+
+
+
+	.stringn "     panda 750      "
+	.stringn "credit         cost "
+	.stringn "$             $18000"
+	.stringn "  Big V4 mid-range  "
+	.stringn "  power and magic   "
+	.stringn " handling at a big  "
+	.stringn "       price.       "
+	.string  "                    "
+
+
+
+	.stringn "    diablo 1000     "
+	.stringn "credit         cost "
+	.stringn "$             $25000"
+	.stringn "   Fuel injected    "
+	.stringn "   horsepower and   "
+	.stringn "  awesome Italian   "
+	.stringn "     handling.      "
+	.string  "                    "
+
+
+.endarea
+; .notice int(0x19d03 - orga())
+
+
+
+.headersize 0
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x3550
+.area 0x3558 - orga()
+
+
+	ld hl, g__bike_owned
+	ld de, 0xc933-1
+	ld b, 0x09+1
+
+
+.endarea
+; .notice int(0x3558 - orga())
