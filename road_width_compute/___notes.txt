@@ -1,0 +1,6 @@
+When doing perspective width math for road segment, game rarely locks up
+-  Unusual zero condition triggers an infinite loop
+
+
+
+Do shortcut math correctly for distant road areas

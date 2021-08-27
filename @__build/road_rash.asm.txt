@@ -27,6 +27,8 @@ Indent:
 
 	.include "gbc_compatible/main.txt"
 
+	.include "road_width_compute/main.txt"
+
 
 .endif
 

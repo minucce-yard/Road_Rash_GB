@@ -1,0 +1,61 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+.org 0x43b3
+.area 0x43e3 - orga()
+
+
+/*	Compute perspective width of road	*/
+
+
+	ld l, 0xff
+
+	ld a, d
+	and a, 0xf0
+	jr nz, @@z__loop
+
+
+
+	ld l, 0x03
+
+	sla e :: rl d
+	sla e :: rl d
+	sla e :: rl d
+	sla e :: rl d
+
+
+; =====================================================
+
+
+@@z__loop:
+	inc l
+	sla e :: rl d
+	jr c, @@z__done
+
+
+	ld a, d
+	or a, e
+	jr nz, @@z__loop
+
+
+
+@@z__done:
+	ld a, l
+	ld (0xcfab), a
+
+	rr d
+	ld a, d
+
+	jr 0x43e3
+
+
+.endarea
+; .notice int(0x43e3 - orga())

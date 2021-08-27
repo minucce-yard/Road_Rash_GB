@@ -18,6 +18,12 @@ gbc_compatible.ips
 
 
 
+road_width_compute.ips
+*  Fix math algorithm for far distant road stretches
+-  Prevent rare game lockups
+
+
+
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 
@@ -190,6 +196,11 @@ _______________________________________________
 
 
 Commits:
+
+
+25 - [2021-08-23]
+*  road_width_compute released
+
 
 
 24 - [2021-08-21]
