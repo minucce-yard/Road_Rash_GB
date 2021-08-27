@@ -9,6 +9,8 @@ License:
 */
 
 
+.definelabel PLAYER_RANK_PRECISION, 1
+
 
 .relativeinclude on
 

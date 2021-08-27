@@ -198,6 +198,12 @@ _______________________________________________
 Commits:
 
 
+25.1 - [2021-08-24]
+*  player_rival_distance updated
+   -  simplify patch  [player_rank_precision]
+
+
+
 25 - [2021-08-23]
 *  road_width_compute released
 
