@@ -1,0 +1,25 @@
+Passwords are generated at several spots
+-  Post-race  (win, lose)
+-  Options
+
+
+
+When finishing a stage though, game invisibly generates new data
+-  One must go to options to get new password
+
+
+
+
+Hack auto-saves after these conditions
+
+1. Race done -- finished, busted, wrecked
+2. Race done -- finished
+3. Stage done -- allows replaying previous finished levels to gain money if needed
+
+
+
+To load save, goto options screen
+
+1. B + START == last password
+2. A + START == last finished race
+3. B + A + START == last completed stage

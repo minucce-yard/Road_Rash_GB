@@ -1,0 +1,172 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+g__save_password:
+	ld a, (0xd15c)				; game mode
+	cp a, 0x02					; results
+
+
+	call z, g__save_slot1		; last race
+	call z, g__save_slot2		; good race
+
+
+; ============================================
+
+
+	cp a, 0x06					; busted, wrecked
+	call z, g__save_slot1		; stage start
+
+
+; ============================================
+
+
+	ld a, (0xd11b)				; level #
+	and a, 0x0f
+	ld b, a
+
+
+	ld a, (0xd11c)				; sierra nevada rank
+	rla
+	rla
+
+
+	ret
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+g__save_slot1:
+	push hl
+
+
+	ld hl, 0xa000				; last race
+	jr @z__save_slot
+
+
+
+; ##################################################
+
+
+
+g__save_slot2:
+	push hl
+
+
+	ld hl, 0xa020				; good race
+	jr @z__save_slot
+
+
+
+; ##################################################
+
+
+
+g__save_slot3:
+	push hl
+
+
+	ld hl, 0xa040				; stage start
+
+
+
+; ##################################################
+
+
+
+@z__save_slot:
+	push af
+	push de
+
+
+	ld a, 0x0a					; enable RAM
+	ld (0x0000), a
+
+
+	push hl
+
+
+; ==================================================
+
+
+	ld de, 0xd11b
+	ld b, 0xd124 - 0xd11b
+
+
+
+@@z__save_data:
+	ld a, (de)
+	ldi (hl), a
+	inc de
+
+
+	dec b
+	jr nz, @@z__save_data
+
+
+; ==================================================
+
+
+	ld de, 0xd2fd
+	ld b, 0x08
+
+
+
+@@z__save_name:
+	ld a, (de)
+	ldi (hl), a
+	inc de
+
+
+	dec b
+	jr nz, @@z__save_name
+
+
+; ==================================================
+
+
+
+	pop hl
+
+	ld b, 0x08 + (0xd124 - 0xd11b)
+	xor a
+
+
+
+@@z__save_checksum:
+	add a, (hl)
+	inc hl
+
+
+	dec b
+	jr nz, @@z__save_checksum
+
+
+
+	ldi (hl), a					; normal
+	cpl
+	ldi (hl), a					; inverse
+
+
+; ==================================================
+
+
+	xor a						; disable RAM
+	ld (0x0000), a
+
+
+	pop de
+	pop af
+	pop hl
+	ret

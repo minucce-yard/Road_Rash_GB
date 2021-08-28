@@ -172,6 +172,19 @@ forfeit_race_early
 
 
 
+password_battery_save
+*  Auto-save progress after every race
+
+   To reload save game, goto password screen
+   - B + START = last password
+   - A + START = last finished race
+   - B + A + START = stage complete
+
+#  Requires rom_battery_expansion
+
+
+
+
 rom_battery_expansion.ips
 *  Expands MMC1 ROM to 256 KB
    Adds battery 2KB SRAM
@@ -195,6 +208,11 @@ _______________________________________________
 
 
 Commits:
+
+
+26 - [2021-08-27]
+*  password_battery_save released
+
 
 
 25.2 - [2021-08-26]
@@ -426,7 +444,7 @@ Comments:
 
 
 
-*  In-game soft reset: press A + B + Select + Start
+*  In-game soft reset: keep holding A + B + Select + Start
 
 
 
@@ -443,7 +461,12 @@ Comments:
 
 *  Stage clear: place 4th or higher in each course
    -  Passwords are reset after the promotion screen
-      Check options menu for new code
+      Check options menu for new code afterward
+
+
+
+*  Higher stages require better bikes
+   -  Replaying finished courses is a faster way to save up money
 
 
 
@@ -457,7 +480,7 @@ Comments:
 
 
 *  Hardware limitations:
-   - When lots of sprites on-screen (2 cars + several racers), tiles may briefly drop out.
+   -  When lots of sprites on-screen (2 cars + several racers), tiles may briefly drop out.
 
 
 
@@ -472,10 +495,6 @@ Comments:
    Colorizer
    -  There's not much color to add: menus, portraits, sprites, title, clouds, mountains, road.
       Still feels like enough work.
-
-
-   SRAM saving
-   -  Method to resume progress without entering password
 
 
    Expanded font

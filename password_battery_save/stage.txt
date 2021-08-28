@@ -1,0 +1,36 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+g__stage_clear:
+	call g__save_slot3			; stage clear
+
+
+; ================================================
+
+
+	ld a, (0xd11b)				; next stage
+	cp a, 0x05
+	jr nc, @@z__save
+
+
+	inc a
+	ld (0xd11b), a
+
+
+
+@@z__save:
+	call 0x2acb					; clear data
+
+
+	call g__save_slot1			; last race
+	call g__save_slot2			; good race
+	ret

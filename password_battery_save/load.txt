@@ -1,0 +1,193 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+g__load_password:
+	ld a, (0xd15c)				; game mode
+	cp a, 0x04					; password
+	jr nz, @@z__exit
+
+
+
+	ld a, (0xd0c0)				; read joypad
+
+	cp a, 0x01 | 0x02 | 0x08	; A + B + START
+	jp z, @z__load_slot3		; stage clear
+
+
+	cp a, 0x01 | 0x08			; A + START
+	jp z, @z__load_slot2		; good race
+
+
+	cp a, 0x02 | 0x08			; B + START
+	jp z, @z__load_slot1		; last race
+
+
+; ============================================
+
+
+@@z__exit:
+	ld a, (0xd118)
+	and a, 0xf0
+	ld c, a
+
+
+	ld a, (0xd118)
+	and a, 0x0f
+	ld (0xd118), a
+
+
+	ret
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+@z__load_slot1:
+	push hl
+
+
+	ld hl, 0xa000				; last race
+	jr @z__load_slot
+
+
+
+; ##################################################
+
+
+
+@z__load_slot2:
+	push hl
+
+
+	ld hl, 0xa020				; good race
+	jr @z__load_slot
+
+
+
+; ##################################################
+
+
+
+@z__load_slot3:
+	push hl
+
+
+	ld hl, 0xa040				; stage clear
+
+
+
+; ##################################################
+
+
+
+@z__load_slot:
+	push de
+
+
+	ld a, 0x0a					; enable RAM
+	ld (0x0000), a
+
+
+; ==================================================
+
+
+	ld b, 0x08 + (0xd124 - 0xd11b)
+	xor a
+
+
+
+@@z__load_checksum:
+	add a, (hl)
+	inc hl
+
+
+	dec b
+	jr nz, @@z__load_checksum
+
+
+
+	dec b						; return flag  (0xff)
+
+
+	cp a, (hl)					; normal
+	jr nz, @@z__exit
+
+
+	cpl							; inverse
+	inc hl
+	cp a, (hl)
+	jr nz, @@z__exit
+
+
+; ==================================================
+
+
+	ld a, l						; reset ptr
+	and a, (~0x1f) & 0xff
+	ld l, a
+
+
+	ld de, 0xd11b
+	ld b, 0xd124 - 0xd11b
+
+
+
+@@z__load_data:
+	ldi a, (hl)
+	ld (de), a
+	inc de
+
+
+	dec b
+	jr nz, @@z__load_data
+
+
+; ==================================================
+
+
+	ld de, 0xd2fd
+	ld b, 0x08
+
+
+
+@@z__load_name:
+	ldi a, (hl)
+	ld (de), a
+	inc de
+
+
+	dec b
+	jr nz, @@z__load_name
+
+
+	; ld b, 0x00					; return flag
+
+
+; ==================================================
+
+
+@@z__exit:
+	xor a						; disable RAM
+	ld (0x0000), a
+
+
+	pop de
+	pop hl
+
+
+
+	pop af						; skip ret call
+
+	ld a, b						; return value
+	jp 0x1131

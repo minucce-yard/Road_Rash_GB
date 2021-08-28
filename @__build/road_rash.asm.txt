@@ -105,6 +105,8 @@ Indent:
 
 	.include "forfeit_race_early/main.txt"
 
+	.include "password_battery_save/main.txt"
+
 	.include "rom_battery_expansion/main.txt"
 
 	.include "skip_splash_screen/main.txt"

@@ -1,2 +1,3 @@
 20000-20040 = course_briefing_reorder
 20040-20090 = forfeit_race_early
+20090-20190 = password_battery_save

@@ -1,0 +1,112 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+.org 0x2fed
+.area 0x2ff8 - orga()
+
+
+/*	Password generator	*/
+
+
+	ld a, orga(g__save_password) / 0x4000
+	call 0x112a
+
+
+	call g__save_password
+
+
+	call 0x1131						; bank 1
+
+
+.endarea
+; .notice int(0x2ff8 - orga())
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x304a
+.area 0x3058 - orga()
+
+
+/*	Password reader	*/
+
+
+	ld a, orga(g__load_password) / 0x4000
+	call 0x112a
+
+
+	call g__load_password
+
+
+	call 0x1131						; bank 1
+	jr 0x3058
+
+
+.endarea
+; .notice int(0x3058 - orga())
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x2abf
+.area 0x2acb - orga()
+
+
+/*	Stage clear	*/
+
+
+	ld a, orga(g__stage_clear) / 0x4000
+	call 0x112a
+
+
+	call g__stage_clear
+
+
+	jp 0x1131						; bank 1
+
+
+.endarea
+; .notice int(0x2acb - orga())
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.orga 0x20090
+.area 0x20190 - orga()
+.headersize 0x4000 - (orga() / 0x4000 * 0x4000)
+
+
+
+.relativeinclude on
+
+
+	.include "load.txt"
+	.include "save.txt"
+	.include "stage.txt"
+
+
+.relativeinclude off
+
+
+
+.headersize 0
+.endarea
+; .notice int(0x20190 - orga())
