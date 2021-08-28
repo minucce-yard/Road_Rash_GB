@@ -2,4 +2,17 @@ Getting to bike shop requires finishing a race or wrecking
 
 
 
-Before race starts, press A + B + SELECT + START to quit race with no penalty
+Before race starts, pause game (START). Then press A + B + SELECT + START to quit race with no penalty
+
+
+
+_____________________________________________________
+
+
+
+25.2
+
+
+Fix: Keep old rank on level replays
+Fix: Reset race start timer to avoid earning money
+Fix: Clear palette fade-in timer to stop glitches

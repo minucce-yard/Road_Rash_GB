@@ -1,2 +1,2 @@
-20000-20040 = script_text_format
-20040-20070 = forfeit_race_early
+20000-20040 = course_briefing_reorder
+20040-20090 = forfeit_race_early

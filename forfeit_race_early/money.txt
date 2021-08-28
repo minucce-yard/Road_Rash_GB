@@ -14,6 +14,11 @@ License:
 .area 0x2d68 - orga()
 
 
+	ld a, (0xce18)					; race started
+	or a
+	ret nz
+
+
 	ld a, (0xd0f4)					; player rank  (1-15)
 	or a
 	ret z

@@ -9,11 +9,91 @@ License:
 */
 
 
+
+.org 0x294d
+.area 0x2959 - orga()
+
+
+/*	Joypad reader	*/
+
+
+	ld a, orga(g__joypad_reset) / 0x4000
+	call 0x112a
+
+
+	call g__joypad_reset
+
+
+	pop bc							; restore bank 1
+	jp 0x1131
+
+
+.endarea
+; .notice int(0x2959 - orga())
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.org 0x2d1c
+.area 0x2d27 - orga()
+
+
+/*	Update player rank	*/
+
+
+	ld a, orga(g__rank_write) / 0x4000
+	call 0x112a
+
+
+	call g__rank_write
+
+
+	call 0x1131						; restore bank 1
+
+
+.endarea
+; .notice int(0x2d27 - orga())
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
 .relativeinclude on
 
 
-	.include "joypad.txt"
 	.include "money.txt"
 
 
 .relativeinclude off
+
+
+
+; <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+.orga 0x20040
+.area 0x20090 - orga()
+.headersize 0x4000 - (orga() / 0x4000 * 0x4000)
+
+
+
+.relativeinclude on
+
+
+	.include "joypad.txt"
+	.include "rank.txt"
+
+
+.relativeinclude off
+
+
+
+.headersize 0
+.endarea
+; .notice int(0x20090 - orga())

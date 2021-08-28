@@ -1,0 +1,38 @@
+/*
+Source:
+	minucce
+
+
+License:
+	Code should be used only for educational, documentation and modding purposes.
+	Please keep derivative work open source.
+*/
+
+
+
+g__rank_write:
+	ld a, (0xce18)				; race started
+	or a
+	jr z, @@z__normal
+
+
+	xor a						; wipe rank
+	ld (0xd0f4), a
+
+
+	pop af						; skip return call
+	jp 0x1131
+
+
+; ========================================================
+
+
+@@z__normal:
+	ld a, (0xd0f4)				; player rank 10+
+	cp a, 0x10
+	ret c
+
+
+	and a, 0x0f					; bcd to hex
+	add a, 0x0a
+	ret

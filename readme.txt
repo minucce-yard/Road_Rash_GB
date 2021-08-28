@@ -92,6 +92,7 @@ final_standing_rivals.ips
 
 player_rank_precision.ips
 *  Use more digits to determine accurate driver ranking
+-  Includes player_rival_distance
 
 
 
@@ -139,8 +140,8 @@ Special: minor fixes, enhancements
 
 course_briefing_reorder.ips
 *  Stage 1:
-   -  Shows regular dialogue on first play
-   -  Shows alternate text on course replay
+   -  Show regular dialogue on first play
+   -  Show alternate text on course replay
 
 
 *  Add Sergio's unused lines on race replays
@@ -163,7 +164,7 @@ double_speed_hack.ips
 
 
 forfeit_race_early 
-*  Drop out of race before it starts with no penalty  (A + B + SELECT + START)
+*  Drop out of race before it starts with no penalty  (pause game, then A + B + SELECT + START)
    Easier access to bike shop by skipping race
 
 #  Requires rom_battery_expansion
@@ -181,8 +182,6 @@ rom_battery_expansion.ips
 script_text_format.ips
 *  Re-centers dialogue for easier reading
 
-#  Requires rom_battery_expansion
-
 
 
 
@@ -196,6 +195,13 @@ _______________________________________________
 
 
 Commits:
+
+
+25.2 - [2021-08-26]
+*  forfeit_race_early updated
+   -  keep on rank on level replays
+   -  reset timers to prevent odd glitches
+
 
 
 25.1 - [2021-08-24]
