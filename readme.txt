@@ -210,6 +210,12 @@ _______________________________________________
 Commits:
 
 
+26.1 - [2021-08-28]
+*  better_transfer_speed updated
+   -  fix oam refresh menu timing glitch
+
+
+
 26 - [2021-08-27]
 *  password_battery_save released
 

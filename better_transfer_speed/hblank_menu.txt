@@ -9,20 +9,21 @@ License:
 */
 
 
-.org 0x0de0
+.org 0x0dda
 .area 0x0df2 - orga()
 
 
+@@z__loop:
+	ldh a, (0x44)				; LY wait
+	cp a, 0x68-1
+	jr nz, @@z__loop
+
+
 	call @z__bgp1
+	call @z__bgp2
 
 
-; =======================================
-
-
-	call 0x2962					; wait next h-blank
-
-	pop af
-	reti
+	jp @z__exit
 
 
 
@@ -31,11 +32,12 @@ License:
 
 
 @z__bgp1:
-	ld a, (0xd157)				; bgp1
+	call 0x2962					; h-blank wait
+
+	ld a, (0xd157)				; bgp
 	ldh (0x47), a
 
-	jp @z__bgp2
-
+	ret
 
 
 .endarea
@@ -47,24 +49,25 @@ License:
 
 
 
-.org 0x0e2f
+.org 0x0e29
 .area 0x0e45 - orga()
 
 
+@@z__loop:
+	ldh a, (0x44)				; LY wait
+	cp a, 0x6c-1
+	jr nz, @@z__loop
+
+
 	call @z__bgp1
+	call @z__bgp2
 
 
 	ld a, 0x08					; scy
 	ldh (0x42), a
 
 
-; =======================================
-
-
-	call 0x2962					; wait next h-blank
-
-	pop af
-	reti
+	jp @z__exit
 
 
 
@@ -73,11 +76,10 @@ License:
 
 
 @z__bgp2:
-	call 0x2962
+	call 0x2962					; h-blank wait
 	call 0x2962
 
-	jp @z__bgp3
-
+	jr @z__bgp2a
 
 
 .endarea
@@ -89,20 +91,21 @@ License:
 
 
 
-.org 0x0e74
+.org 0x0e6e
 .area 0x0e86 - orga()
 
 
+@@z__loop:
+	ldh a, (0x44)				; LY wait
+	cp a, 0x6e-1
+	jr nz, @@z__loop
+
+
 	call @z__bgp1
+	call @z__bgp2
 
 
-; =======================================
-
-
-	call 0x2962					; wait next h-blank
-
-	pop af
-	reti
+	jp @z__exit
 
 
 
@@ -126,12 +129,26 @@ License:
 
 
 
-.org 0x0ea6
+.org 0x0e97
 .area 0x0ebc - orga()
+
+
+	push af
+
+
+	ldh a, (0x44)				; LY wait
+	cp a, 0x18
+	jr nz, 0x0ebc
 
 
 	call @z__bgp1
 
+	ld a, (0xd153)				; scy
+	ldh (0x43), a
+
+
+
+	call @z__bgp2
 
 	ld a, 0x47					; lyc
 	ldh (0x45), a
@@ -140,11 +157,25 @@ License:
 ; =======================================
 
 
-	call 0x2962					; wait next h-blank
+@z__exit:
+	call 0x2962					; h-blank exit
 
 	pop af
 	reti
 
 
+
+; #############################################
+
+
+
+@z__bgp2a:
+	ld a, (0xd155)				; bgp
+	ldh (0x47), a
+
+	ret
+
+
+
 .endarea
-; .notice int(0x0e86 - orga())
+; .notice int(0x0ebc - orga())

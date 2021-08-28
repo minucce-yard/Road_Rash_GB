@@ -46,3 +46,19 @@ Video data transfers can be interrupted by h-blank IRQs
 
 
 Detect condition and wait for h-blank before leaving ISR
+
+
+
+___________________________________________________________
+
+
+
+26.2 - [2021-08-28]
+
+
+Waiting for LY line (OAM refresh) is too short
+-  Random color visual corruption can happen
+
+
+
+Add h-blank wait

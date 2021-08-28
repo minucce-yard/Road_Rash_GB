@@ -17,6 +17,7 @@ License:
 /*	No IRQs	*/
 
 
+	.include "1d07__menu_tile.txt"
 	.include "1d3f__world_map_tile.txt"
 	.include "1e03__world_tile.txt"
 	.include "1e2a__world_map.txt"
