@@ -19,6 +19,7 @@ Indent:
 
 
 
+
 .if FULL_BUILD >= 1
 
 
@@ -41,20 +42,23 @@ Indent:
 /*	Basic	*/
 
 
-	.include "stage_loading_delay/main.txt"
-
-	.include "hud_sprite_top/main.txt"
-	.include "menu_border_top/main.txt"
-
-	.include "sky_clouds_align/main.txt"
-	.include "sky_border_top/main.txt"
-
-	.include "zero_money_printer/main.txt"
-	.include "portrait_frame_corner/main.txt"
-
 	.include "distant_car_visible/main.txt"
 
-	.include "script_text_format/main.txt"
+	.include "hud_sprite_top/main.txt"
+
+	.include "menu_border_top/main.txt"
+
+	.include "portrait_frame_corner/main.txt"
+
+	.include "prepare_road_tables/main.txt"
+
+	.include "sky_clouds_align/main.txt"
+
+	.include "sky_border_top/main.txt"
+
+	.include "stage_loading_delay/main.txt"
+
+	.include "zero_money_printer/main.txt"
 
 
 .endif
@@ -72,20 +76,13 @@ Indent:
 
 	.include "player_rival_distance/main.txt"
 
-	.include "sky_animate_last/main.txt"
+	.include "racer_name_symbols/main.txt"
+
+	.include "script_text_format/main.txt"
 
 	.include "speed_meter_precision/main.txt"
 
 	.include "taller_bold_4/main.txt"
-
-	.include "racer_name_symbols/main.txt"
-	.include "racer_sort_priority/main.txt"
-
-	.include "player_rank_precision/main.txt"
-
-	.include "final_standing_rivals/main.txt"
-
-	.include "prepare_road_tables/main.txt"
 
 
 .endif
@@ -103,13 +100,21 @@ Indent:
 
 	.include "double_speed_hack/main.txt"
 
+	.include "final_standing_rivals/main.txt"
+
 	.include "forfeit_race_early/main.txt"
 
-	.include "password_battery_save/main.txt"
+	.include "racer_sort_priority/main.txt"
 
 	.include "rom_battery_expansion/main.txt"
 
 	.include "skip_splash_screen/main.txt"
+
+	.include "player_rank_precision/main.txt"
+
+	.include "password_battery_save/main.txt"
+
+	.include "sky_animate_last/main.txt"
 
 
 .endif

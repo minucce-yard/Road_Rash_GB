@@ -96,5 +96,4 @@ g_final_standing_driver_update:
 
 
 .endarea
-; .notice tohex(orga(),4)
 ; .notice int(0x0cf4 - orga())

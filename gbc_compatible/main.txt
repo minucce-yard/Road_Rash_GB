@@ -13,20 +13,15 @@ License:
 
 
 .org 0x0bd7
-; .area 0x0bdd - 0x0bd7
+; .area 0x0bdd - orga()
 
 
 @@z__start:
 	ldh a, (0x0f)				; signal LCD interrupt
 	or a, 0x02
 	ldh (0x0f), a
-@@z__end:
 
 
-
-.if (@@z__end - @@z__start) != (0x0bdd - 0x0bd7)
-	.error "area: " + tostring(@@z__end - @@z__start) + " != " + tostring(0x0bdd - 0x0bd7)
-.endif
-
+; .notice int(0x0bdd - orga())
 
 .endif

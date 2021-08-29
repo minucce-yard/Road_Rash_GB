@@ -20,6 +20,5 @@ License:
 	call g_final_standing_driver_update
 
 
-
 .endarea
 ; .notice int(0x5ee9 - orga())
