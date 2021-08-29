@@ -18,6 +18,7 @@ gbc_compatible.ips
 
 
 
+
 road_width_compute.ips
 *  Fix math algorithm for far distant road stretches
 -  Prevent rare game lockups
@@ -36,9 +37,11 @@ distant_car_visible.ips
 
 
 
+
 hud_sprite_top.ips
 *  Draw world sprites behind dashboard
 *  Reduce road pixel flicker
+
 
 
 
@@ -47,8 +50,16 @@ menu_border_top.ips
 
 
 
+
+portrait_frame_corner.ips
+*  Fill in missing corner pixels on briefing portraits
+
+
+
+
 prepare_road_tables.ips
 *  Reduce mid-road tearing during drawing
+
 
 
 
@@ -58,13 +69,16 @@ sky_border_top.ips
 
 
 
+
 sky_clouds_align.ips
 *  Correctly draw each sky texture line
 
 
 
+
 stage_loading_delay.ips
 *  Prevent slowdowns that greatly increase loading times
+
 
 
 
@@ -80,19 +94,9 @@ zero_money_printer.ips
 Plus: recommended fixes
 
 
-better_loading_speed.ips
+better_transfer_speed.ips
 *  Manage video timing to avoid longer loading times
 
-
-
-final_standing_rivals.ips
-*  Lock each driver's rank after crossing the finish line
-
-
-
-player_rank_precision.ips
-*  Use more digits to determine accurate driver ranking
--  Includes player_rival_distance
 
 
 
@@ -101,28 +105,22 @@ player_rival_distance.ips
 
 
 
-portrait_frame_corner.ips
-*  Fill in missing corner pixels on briefing portraits
 
-
-
-racer_name_letters.ips
+racer_name_symbols.ips
 *  Add ' symbol to police names
 
 
 
-racer_sort_priority.ips
-*  Print closest rivals who have higher veteran status
 
+script_text_format.ips
+*  Re-centers dialogue for easier reading
 
-
-sky_animate_last.ips
-*  Move last line of clouds at skyline  (very very slow)
 
 
 
 speed_meter_precision.ips
 *  Use more digits in printing speedometer
+
 
 
 
@@ -163,6 +161,14 @@ double_speed_hack.ips
 
 
 
+final_standing_rivals.ips
+*  Lock each driver's rank after crossing the finish line
+
+#  Performance penalty
+
+
+
+
 forfeit_race_early 
 *  Drop out of race before it starts with no penalty  (pause game, then A + B + SELECT + START)
    Easier access to bike shop by skipping race
@@ -173,7 +179,7 @@ forfeit_race_early
 
 
 password_battery_save
-*  Auto-save progress after every race
+*  Auto-save progress after every race. Also saves player name.
 
    To reload save game, goto password screen
    - B + START = last password
@@ -185,15 +191,26 @@ password_battery_save
 
 
 
+player_rank_precision.ips
+*  Use more digits to determine accurate driver ranking
+-  Includes player_rival_distance
+
+#  Performance penalty
+
+
+
+
+racer_sort_priority.ips
+*  Print closest rivals who have higher veteran status
+
+#  Performance penalty
+
+
+
+
 rom_battery_expansion.ips
 *  Expands MMC1 ROM to 256 KB
    Adds battery 2KB SRAM
-
-
-
-
-script_text_format.ips
-*  Re-centers dialogue for easier reading
 
 
 
@@ -203,11 +220,24 @@ skip_splash_screen.ips
 
 
 
+
+sky_animate_last.ips
+*  Move last line of clouds at skyline  (very very slow)
+
+#  Performance penalty
+
+
+
 _______________________________________________
 
 
 
 Commits:
+
+
+26.2 - [2021-08-29]
+*  re-sort patches, based on performance
+
 
 
 26.1 - [2021-08-28]
